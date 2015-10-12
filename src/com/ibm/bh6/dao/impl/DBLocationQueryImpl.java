@@ -13,9 +13,33 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     }
 
     @Override
-    public List<String> postLocation() {
+    public List<String> getLocations() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public List<String> getLocationsByDistance() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<String> getLocationsByType() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<String> getLocationsByTypeAndDistance() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean postLocation() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }
