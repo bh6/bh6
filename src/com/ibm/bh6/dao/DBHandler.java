@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class DBHandler {
 
-    private static final String PERSISTENCE_UNIT_NAME = "bh6db";
+    private static final String PERSISTENCE_UNIT_NAME = "openjpa-todo";
     private static EntityManagerFactory factory;
 
     protected static EntityManagerFactory DBConnection() throws Exception {
