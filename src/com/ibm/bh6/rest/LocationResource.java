@@ -100,17 +100,17 @@ public class LocationResource {
 	
 		
 		DBLocationQuery q = new DBLocationQueryImpl();
-		q.postLocation(l1);
-		q.postLocation(l2);
-		q.postLocation(l3);
+		boolean result = q.postLocation(l1);
+	//	q.postLocation(l2);
+	//	q.postLocation(l3);
 		
-		return Response.ok().build();
+		return Response.ok("Result: "+result).build();
 	}
 	
 	
 	
 
-	private JsonElement getJSON(Collection<Location> locations) {
+	public JsonElement getJSON(Collection<Location> locations) {
 		JsonArray resultArray = new JsonArray();
 
 		for (Iterator<Location> it = locations.iterator(); it.hasNext();) {
@@ -121,7 +121,7 @@ public class LocationResource {
 		return resultArray;
 	}
 
-	private JsonElement getJSON(Location l) {
+	public JsonElement getJSON(Location l) {
 		
 		if (l==null) {
 			return new JsonObject();
