@@ -2,23 +2,26 @@ package com.ibm.bh6.dao;
 
 import java.util.List;
 
-import javax.xml.stream.Location;
+import com.ibm.bh6.model.Location;
 
 public interface DBLocationQuery {
 
     /**
      * gets a locations from the db by id
      * 
+     * @param id
+     *            - id of location in db
+     * 
      * @return {@link Location} location
      */
-    public List<String> getLocation();
+    public List<Location> getLocation(int id);
 
     /**
      * gets a list of all locations in the db
      * 
      * @return {@link List<Location>} list of locations
      */
-    public List<String> getLocations();
+    public List<Location> getLocations();
 
     /**
      * gets a list of locations, sorted by the distance to the given Location
@@ -28,7 +31,7 @@ public interface DBLocationQuery {
      * 
      * @return {@link List<Location>} list of locations
      */
-    public List<String> getLocationsByDistance();
+    public List<Location> getLocationsByDistance(Float x, Float y);
 
     /**
      * gets a list of all locations of a specific type
@@ -38,7 +41,7 @@ public interface DBLocationQuery {
      * 
      * @return {@link List<Location>} list of locations
      */
-    public List<String> getLocationsByType();
+    public List<Location> getLocationsByType(String type);
 
     /**
      * gets a list of all locations of a specific type, sorted by the distance
@@ -51,7 +54,7 @@ public interface DBLocationQuery {
      * 
      * @return {@link List<Location>} list of locations
      */
-    public List<String> getLocationsByTypeAndDistance();
+    public List<Location> getLocationsByTypeAndDistance(Float x, Float y, String type);
 
     /**
      * persists a new location
@@ -60,6 +63,6 @@ public interface DBLocationQuery {
      *            - location to be persisted
      * @return {@link Boolean} true if success
      */
-    public boolean postLocation();
+    public boolean postLocation(Location location);
 
 }
