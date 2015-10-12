@@ -14,7 +14,7 @@ public interface DBLocationQuery {
      * 
      * @return {@link Location} location
      */
-    public List<Location> getLocation(int id);
+    public Location getLocation(int id);
 
     /**
      * gets a list of all locations in the db

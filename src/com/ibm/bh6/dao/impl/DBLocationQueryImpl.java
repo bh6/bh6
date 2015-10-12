@@ -8,7 +8,7 @@ import com.ibm.bh6.model.Location;
 public class DBLocationQueryImpl implements DBLocationQuery {
 
     @Override
-    public List<Location> getLocation(int id) {
+    public Location getLocation(int id) {
         // TODO Auto-generated method stub
         return null;
     }
