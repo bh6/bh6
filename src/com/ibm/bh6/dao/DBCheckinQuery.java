@@ -8,6 +8,8 @@ public interface DBCheckinQuery {
 
     public List<CheckIn> getCurrentCheckIns();
 
+    public List<CheckIn> getClosestCheckIns(Float gpsX, Float gpsY);
+
     public boolean createCheckIn(CheckIn checkIn);
 
 }
