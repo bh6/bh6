@@ -10,4 +10,6 @@ public interface DBUserQuery {
 
     public User getUser(int id);
 
+    public User getUser(String name);
+
 }

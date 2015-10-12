@@ -24,6 +24,9 @@ public class CheckIn {
     @Column(name = "user")
     private User m_user;
 
+    @Column(name = "location")
+    private Location location;
+
     public CheckIn() {
         m_timestamp = new Date();
     }
@@ -50,6 +53,14 @@ public class CheckIn {
 
     public void setUser(User m_user) {
         this.m_user = m_user;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
 }

@@ -17,7 +17,24 @@ public class DBUserQueryImpl implements DBUserQuery {
 
     @Override
     public User getUser(int id) {
-        // TODO Auto-generated method stub
+
+        for (User u : getStubUsers()) {
+            if (id == u.getUserId()) {
+                return u;
+            }
+        }
+
+        return null;
+
+    }
+
+    public User getUser(String name) {
+        for (User u : getStubUsers()) {
+            if (name.equalsIgnoreCase(u.getUserName())) {
+                return u;
+            }
+        }
+
         return null;
     }
 

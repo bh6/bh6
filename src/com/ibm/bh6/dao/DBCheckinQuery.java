@@ -8,4 +8,6 @@ public interface DBCheckinQuery {
 
     public List<CheckIn> getCurrentCheckIns();
 
+    public boolean createCheckIn(CheckIn checkIn);
+
 }

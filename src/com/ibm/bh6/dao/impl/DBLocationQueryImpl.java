@@ -3,11 +3,12 @@ package com.ibm.bh6.dao.impl;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
 
-import com.ibm.bh6.dao.DBHandler;
 import com.ibm.bh6.dao.DBLocationQuery;
 import com.ibm.bh6.model.Location;
 
@@ -19,8 +20,8 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     private EntityManager em;
 
     public DBLocationQueryImpl() {
-        utx = DBHandler.getUserTransaction();
-        em = DBHandler.getEntityManager();
+        utx = getUserTransaction();
+        em = getEm();
     }
 
     @Override
@@ -119,6 +120,28 @@ public class DBLocationQueryImpl implements DBLocationQuery {
         }
 
         return true;
+    }
+
+    private EntityManager getEm() {
+        InitialContext ic;
+        try {
+            ic = new InitialContext();
+            return (EntityManager) ic.lookup("java:comp/env/openjpa-todo/entitymanager");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private UserTransaction getUserTransaction() {
+        InitialContext ic;
+        try {
+            ic = new InitialContext();
+            return (UserTransaction) ic.lookup("java:comp/UserTransaction");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
