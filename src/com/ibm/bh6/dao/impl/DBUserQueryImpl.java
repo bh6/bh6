@@ -43,6 +43,7 @@ public class DBUserQueryImpl implements DBUserQuery {
         List<User> userList = new ArrayList<User>();
 
         User user = new User();
+        user.setUserId(0);
         user.setEmail("frank.adams@renovations.com");
         user.setUserName("Frank Adams");
         user.setJobDesc("Lead Developer");
