@@ -15,6 +15,8 @@
                 <jta-data-source>jdbc/bbhackaton6-sqldb</jta-data-source>
         
         <class>com.ibm.bh6.model.Location</class>
+        <class>com.ibm.bh6.model.CheckIn</class>
+        <class>com.ibm.bh6.model.User</class>
         <properties>
             <!-- allow table definitions/creation on-the-fly jpa-2.0 feature -->
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />

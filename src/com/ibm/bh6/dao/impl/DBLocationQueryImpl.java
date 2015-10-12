@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.ibm.bh6.dao.DBHandler;
@@ -13,11 +14,13 @@ import com.ibm.bh6.model.Location;
 public class DBLocationQueryImpl implements DBLocationQuery {
 
     private static final Logger LOGGER = Logger.getLogger(DBLocationQueryImpl.class.getName());
+    @PersistenceContext
+    EntityManager em;
 
     @Override
     public Location getLocation(int locationId) {
 
-        EntityManager em = DBHandler.getEntityManager();
+        // EntityManager em = DBHandler.getEntityManager();
 
         LOGGER.info("Get location with id  " + locationId);
 
@@ -31,7 +34,7 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     @Override
     public List<Location> getLocations() {
 
-        EntityManager em = DBHandler.getEntityManager();
+        // EntityManager em = DBHandler.getEntityManager();
 
         LOGGER.info("Get all locations");
 
@@ -44,7 +47,7 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     @Override
     public List<Location> getLocationsByDistance(Float gpsX, Float gpsY) {
 
-        EntityManager em = DBHandler.getEntityManager();
+        // EntityManager em = DBHandler.getEntityManager();
 
         LOGGER.info("Get all locations");
 
@@ -59,7 +62,7 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     @Override
     public List<Location> getLocationsByType(String type) {
 
-        EntityManager em = DBHandler.getEntityManager();
+        // EntityManager em = DBHandler.getEntityManager();
 
         LOGGER.info("Get all locations with type " + type);
 
@@ -73,7 +76,7 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     @Override
     public List<Location> getLocationsByTypeAndDistance(Float gpsX, Float gpsY, String type) {
 
-        EntityManager em = DBHandler.getEntityManager();
+        // EntityManager em = DBHandler.getEntityManager();
 
         LOGGER.info("Get all locations");
 
@@ -88,9 +91,12 @@ public class DBLocationQueryImpl implements DBLocationQuery {
 
     @Override
     public boolean postLocation(Location location) {
-        EntityManager em = DBHandler.getEntityManager();
+        // EntityManager em = DBHandler.getEntityManager();
 
+        LOGGER.info("persisting location " + location.toString() + "with em " + em.toString());
         em.persist(location);
+        em.close();
+        LOGGER.info("persisted location " + location.toString());
 
         return true;
     }
