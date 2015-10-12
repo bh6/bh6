@@ -89,10 +89,8 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     @Override
     public boolean postLocation(Location location) {
         EntityManager em = DBHandler.getEntityManager();
-        em.getTransaction().begin();
 
         em.persist(location);
-        em.getTransaction().commit();
 
         return true;
     }
