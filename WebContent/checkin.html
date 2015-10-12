@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Where your are?</title>
+<link rel="stylesheet" type="text/css" href="../WebContent/css/login.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script type="text/javascript"> 
+function update_list(updatedUsers) {
+
+	  // clear the existing list
+	  $('#users .list li').remove();
+
+	  $.each(updatedUsers, function(index,userName) {
+	    $('#users .list').append('<li><h3 class="name">'+userName+'</h3></li>')
+	  });
+	};
+	
+</script>
+<script type="application/javascript">
+// Get the updated list
+function update(){
+	// [{"id":"1","name":"Mercure","type":"Hotel","gps":{"x":9.3,"y":9.3},"adress":{"street":"Hauptstr.","number":"3","plz":"12345"}}]
+ 	//var updated_users = [{"id":"1","name":"Mercure","type":"Hotel","gps":{"x":9.3,"y":9.3},"adress":{"street":"Hauptstr.","number":"3","plz":"12345"}}];
+	// Update it
+	//update_list(updated_users);	
+/*	$.get('http://bbhackathon6.mybluemix.net/api/location/byDistance?x=9.3&y=3', function(data) {
+		type: 'GET',
+		//contentType: "text/plain",
+		dataType: 'json'
+		//data[0].name;
+})	 */
+	$.getJSON( "http://bbhackathon6.mybluemix.net/api/location/byDistance?x=9.3&y=3", function( data ) {
+		  var items = [];
+		  $.each( data, function( key, val ) {
+		    items.push( "<li id='" + key + "'>" + val + "</li>" );
+		  });
+		 
+		  $( "<ul/>", {
+		    "class": "my-new-list",
+		    html: items.join( "" )
+		  }).appendTo( "body" );
+		});
+
+}
+
+//Example by AJAX get using a made-up URL
+
+
+</script>
+
+
+</head>
+<body onload="update();">
+
+
+<div class="container">
+	<section id="content">
+		<form action="">
+			<h1> Where are you? </h1>
+			<div id="users">
+			  <ul class="list">
+			  
+				   <li>
+				      <h3 class="name">name1</h3>
+				    </li>
+				    <li>
+				      <h3 class="name">name2</h3>
+				    </li>
+			  </ul>
+			</div>
+		</form><!-- form -->
+	</section><!-- content -->
+</div><!-- container -->
+</body>
+</html>
