@@ -68,15 +68,47 @@ public class LocationResource {
 		
 		Location l3 = new Location ("DKB","CUSTOMER");
 		l3.setAddress("Berlin", "Schönhauserstr." , new Integer (765) , new Integer (10709) , new Float( 43.00), new Float (34.00));
+	
+		
+		Location l4 = new Location ("DKB","CUSTOMER");
+		l4.setAddress("Berlin", "Schönhauserstr." , new Integer (765) , new Integer (10709) , new Float( 43.00), new Float (34.00));
+	
 		
 		ArrayList<Location> locations = new ArrayList<Location>();
 		locations.add(l1);
 		locations.add(l2);
 		locations.add(l3);
+		locations.add(l4);
 		
 		
 		return Response.ok(getJSON(locations).toString()).build();
 	}
+	
+	
+	@GET
+	@Path("/createFake")
+	public Response createFake() {
+		
+		Location l1  = new Location ("Hotel1","HOTEL");
+		l1.setAddress("Berlin", "Kurf�rstendamm", new Integer(100), new Integer (10709), new Float(33.00), new Float(45.00));		
+
+		Location l2 = new Location ("Berlin","CITY");
+		l2.setAddress("Berlin", "n/a", -100, 10000,  new Float(33.00), new Float(45.00));
+		
+		Location l3 = new Location ("DKB","CUSTOMER");
+		l3.setAddress("Berlin", "Schönhauserstr." , new Integer (765) , new Integer (10709) , new Float( 43.00), new Float (34.00));
+	
+		
+		DBLocationQuery q = new DBLocationQueryImpl();
+		q.postLocation(l1);
+		q.postLocation(l2);
+		q.postLocation(l3);
+		
+		return Response.ok().build();
+	}
+	
+	
+	
 
 	private JsonElement getJSON(Collection<Location> locations) {
 		JsonArray resultArray = new JsonArray();

@@ -4,15 +4,23 @@
 <meta charset="ISO-8859-1">
 <title>Where your are?</title>
 <link rel="stylesheet" type="text/css" href="../WebContent/css/login.css" />
+<!-- Include jQuery Mobile stylesheets -->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<!-- Include the jQuery library -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Include the jQuery Mobile library -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript"> 
-function update_list(updatedUsers) {
+function update_list(updatedLocation) {
 
+		console.log(updatedLocation)
 	  // clear the existing list
-	  $('#users .list li').remove();
+	  $('#location .list li').remove();
 
-	  $.each(updatedUsers, function(index,userName) {
-	    $('#users .list').append('<li><h3 class="name">'+userName+'</h3></li>')
+	  $.each(updatedLocation, function(index,locationName) {
+	    $('#location .list').append('<li data-role="listview" data-inset="true" data-split-icon="star"><h3 class="name">'+locationName.name+'</h3></li>')
 	  });
 	};
 	
@@ -20,17 +28,19 @@ function update_list(updatedUsers) {
 <script type="application/javascript">
 // Get the updated list
 function update(){
+	//[{"id":"1","name":"Hotel1","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Berlin","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"DKB","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}]
 	// [{"id":"1","name":"Mercure","type":"Hotel","gps":{"x":9.3,"y":9.3},"adress":{"street":"Hauptstr.","number":"3","plz":"12345"}}]
- 	//var updated_users = [{"id":"1","name":"Mercure","type":"Hotel","gps":{"x":9.3,"y":9.3},"adress":{"street":"Hauptstr.","number":"3","plz":"12345"}}];
+ 	var updated_location = [{"id":"1","name":"Hotel1","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Berlin","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"DKB","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}];
 	// Update it
-	//update_list(updated_users);	
+	updated_location[0].name
+	update_list(updated_location);	
 /*	$.get('http://bbhackathon6.mybluemix.net/api/location/byDistance?x=9.3&y=3', function(data) {
 		type: 'GET',
 		//contentType: "text/plain",
 		dataType: 'json'
 		//data[0].name;
 })	 */
-	$.getJSON( "http://bbhackathon6.mybluemix.net/api/location/byDistance?x=9.3&y=3", function( data ) {
+/* 	$.getJSON( "http://bbhackathon6.mybluemix.net/api/location/byDistance?x=9.3&y=3", function( data ) {
 		  var items = [];
 		  $.each( data, function( key, val ) {
 		    items.push( "<li id='" + key + "'>" + val + "</li>" );
@@ -40,7 +50,7 @@ function update(){
 		    "class": "my-new-list",
 		    html: items.join( "" )
 		  }).appendTo( "body" );
-		});
+		}); */
 
 }
 
@@ -58,16 +68,19 @@ function update(){
 	<section id="content">
 		<form action="">
 			<h1> Where are you? </h1>
-			<div id="users">
+			<div id="location">
 			  <ul class="list">
 			  
-				   <li>
+				   <li >
 				      <h3 class="name">name1</h3>
 				    </li>
 				    <li>
 				      <h3 class="name">name2</h3>
 				    </li>
 			  </ul>
+			  <ul data-role="listview" data-inset="true" data-split-icon="star"><li><a href="#"><h3>Bantamgewicht</h3>
+			  
+			  
 			</div>
 		</form><!-- form -->
 	</section><!-- content -->
