@@ -27,6 +27,10 @@ public class LocationResource {
 
 	@GET
 	@Path("/{id}")
+	/*
+	 * URL Example: http://bbhackathon6.mybluemix.net/api/location/2
+	 * Returns JSON for one specific location by ID	 * 
+	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("id") String id) {
 
@@ -34,54 +38,56 @@ public class LocationResource {
 		jsonObject.addProperty("id", id);
 		jsonObject.addProperty("name", "Mövenpick");
 		jsonObject.addProperty("type", "Hotel");
-		
-	
+
 		return Response.ok(jsonObject.toString()).build();
-		
+
 	}
-	
+
 	@GET
 	@Path("/byDistance")
+	/*
+	 * URL Example http://bbhackathon6.mybluemix.net/api/location/byDistance?x=9.3&y=3
+	 * Return a JSON List with locations
+	 */
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getLocationByDistance(@QueryParam("x") double x,@QueryParam("x") double y) {
-		
-	
+	public Response getLocationByDistance(@QueryParam("x") double x, @QueryParam("x") double y) {
+
 		return null;
-		//return Response.ok(resultArray.toString()).build();
+		// return Response.ok(resultArray.toString()).build();
 	}
+
 	
-	private JsonElement getJSON(Collection<Location> objects) {
+	private JsonElement getJSON(Collection<Location> locations) {
 		JsonArray resultArray = new JsonArray();
-		
-		for (Iterator<Location> it = objects.iterator(); it.hasNext();) {
+
+		for (Iterator<Location> it = locations.iterator(); it.hasNext();) {
 			JsonElement e = getJSON((Location) it.next());
 			resultArray.add(e);
 		}
-		
+
 		return resultArray;
 	}
-	
+
 	private JsonElement getJSON(Location l) {
 		JsonObject jsonObject = new JsonObject();
 
-		jsonObject.addProperty("id", "1");   //TODO: Location hat keine ID
+		jsonObject.addProperty("id", "1"); // TODO: Location hat keine ID
 		jsonObject.addProperty("name", l.getName());
 		jsonObject.addProperty("type", l.getLocType());
-		
+
 		JsonObject gps = new JsonObject();
 		gps.addProperty("x", l.getGPSx());
 		gps.addProperty("y", l.getGPSy());
 		jsonObject.add("gps", gps);
-		
+
 		JsonObject adr = new JsonObject();
 		adr.addProperty("street", l.getStreet());
 		adr.addProperty("number", l.gethnr());
 		adr.addProperty("plz", l.getBrick());
 		adr.addProperty("stadt", l.getCity());
 		jsonObject.add("adress", adr);
-		
+
 		return jsonObject;
 	}
 
-	
 }
