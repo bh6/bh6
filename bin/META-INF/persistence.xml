@@ -11,7 +11,7 @@
             <dataSource id='mysql-datasource' jdbcDriverRef='mysql-driver' jndiName='jdbc/mydbdatasource'> 
                 <properties user='root' password='password' url="jdbc:mysql://localhost:3306/db?relaxAutoCommit=true"/> 
             </dataSource> -->
-        <jta-data-source>java:comp/env/jdbc/mydbdatasource</jta-data-source>
+        <jta-data-source>java:comp/env/jdbc/bbhackaton6-sqldb</jta-data-source>
         <class>com.ibm.bh6.model.Location</class>
         <properties>
             <!-- allow table definitions/creation on-the-fly jpa-2.0 feature -->

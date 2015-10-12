@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.ibm.bh6.dao.DBLocationQuery;
 import com.ibm.bh6.dao.impl.DBLocationQueryImpl;
 import com.ibm.bh6.model.Location;
 
@@ -35,7 +36,7 @@ public class LocationResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("id") String id) {
 
-		DBLocationQueryImpl q = new DBLocationQueryImpl();
+		DBLocationQuery q = new DBLocationQueryImpl();
 		Location l = q.getLocation(Integer.parseInt(id));
 
 		return Response.ok(getJSON(l).toString()).build();
