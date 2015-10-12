@@ -18,8 +18,8 @@ public class CheckInResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response create(CheckIn c) {
-		//DBCheckinQuery db = new DBCheckinQueryImpl();
-		//db.createCheckIn(c);
+		DBCheckinQuery db = new DBCheckinQueryImpl();
+		db.createCheckIn(c);
 		
 		return Response.ok("success: "+c.toString()).build();
 		
