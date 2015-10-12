@@ -1,0 +1,11 @@
+applications:
+- path: JavaDb2App.war
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: bbhackaton6
+  host: bbhackaton6
+  disk_quota: 1024M
+  services:
+  - bbhackaton6-sqldb
+  - bbhackaton6-MonitoringAndAnalytics
