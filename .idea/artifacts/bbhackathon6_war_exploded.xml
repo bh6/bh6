@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="bbhackathon6:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/bbhackathon6_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="bbhackathon6" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="com.ibm.ws.javaee.persistence.2.0_1.0.1.jar" module-name="bbhackathon6" />
+          <element id="library" level="module" name="com.ibm.ws.javaee.jaxrs.1.1_1.0.1.jar" module-name="bbhackathon6" />
+          <element id="library" level="module" name="com.ibm.ws.javaee.transaction.1.1_1.0.1.jar" module-name="bbhackathon6" />
+          <element id="library" level="module" name="nosqljson.jar" module-name="bbhackathon6" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="bbhackathon6/web/Web" />
+    </root>
+  </artifact>
+</component>
