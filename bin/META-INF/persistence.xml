@@ -21,7 +21,7 @@
             <!-- allow table definitions/creation on-the-fly jpa-2.0 feature -->
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
             <!-- allow table definitions/creation on-the-fly jpa-2.1 feature -->
-            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
         </properties>
     </persistence-unit>
 </persistence>
