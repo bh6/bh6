@@ -1,5 +1,8 @@
 package com.ibm.bh6.rest;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,7 +14,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.ibm.bh6.model.Location;
 
 @Path("/location")
 /**
@@ -40,32 +45,43 @@ public class LocationResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getLocationByDistance(@QueryParam("x") double x,@QueryParam("x") double y) {
 		
-		JsonArray resultArray = new JsonArray();
-		JsonObject jsonObject;
-
-		jsonObject = new JsonObject();
-		jsonObject.addProperty("id", "1");
-		jsonObject.addProperty("name", "Mercure");
-		jsonObject.addProperty("type", "Hotel");
-		
-		
-		JsonObject gps = new JsonObject();
-		gps.addProperty("x", x);
-		gps.addProperty("y", y);
-		
-		JsonObject adr = new JsonObject();
-		adr.addProperty("street", "Hauptstr.");
-		adr.addProperty("number", "3");
-		adr.addProperty("plz", "12345");
-		jsonObject.add("adress", adr);
-		
-		resultArray.add(jsonObject);
-		
-		return Response.ok(resultArray.toString()).build();
+	
+		return null;
+		//return Response.ok(resultArray.toString()).build();
 	}
 	
+	private JsonElement getJSON(Collection<Location> objects) {
+		JsonArray resultArray = new JsonArray();
+		
+		for (Iterator<Location> it = objects.iterator(); it.hasNext();) {
+			JsonElement e = getJSON((Location) it.next());
+			resultArray.add(e);
+		}
+		
+		return resultArray;
+	}
 	
-	
-	
+	private JsonElement getJSON(Location l) {
+		JsonObject jsonObject = new JsonObject();
+
+		jsonObject.addProperty("id", "1");   //TODO: Location hat keine ID
+		jsonObject.addProperty("name", l.getName());
+		jsonObject.addProperty("type", l.getLocType());
+		
+		JsonObject gps = new JsonObject();
+		gps.addProperty("x", l.getGPSx());
+		gps.addProperty("y", l.getGPSy());
+		jsonObject.add("gps", gps);
+		
+		JsonObject adr = new JsonObject();
+		adr.addProperty("street", l.getStreet());
+		adr.addProperty("number", l.gethnr());
+		adr.addProperty("plz", l.getBrick());
+		adr.addProperty("stadt", l.getCity());
+		jsonObject.add("adress", adr);
+		
+		return jsonObject;
+	}
+
 	
 }
