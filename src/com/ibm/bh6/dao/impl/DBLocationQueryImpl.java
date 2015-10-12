@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.UserTransaction;
 
 import com.ibm.bh6.dao.DBHandler;
 import com.ibm.bh6.dao.DBLocationQuery;
@@ -14,8 +14,14 @@ import com.ibm.bh6.model.Location;
 public class DBLocationQueryImpl implements DBLocationQuery {
 
     private static final Logger LOGGER = Logger.getLogger(DBLocationQueryImpl.class.getName());
-    @PersistenceContext
-    EntityManager em;
+
+    private UserTransaction utx;
+    private EntityManager em;
+
+    public DBLocationQueryImpl() {
+        utx = DBHandler.getUserTransaction();
+        em = DBHandler.getEntityManager();
+    }
 
     @Override
     public Location getLocation(int locationId) {
@@ -93,10 +99,24 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     public boolean postLocation(Location location) {
         // EntityManager em = DBHandler.getEntityManager();
 
-        LOGGER.info("persisting location " + location.toString() + "with em " + em.toString());
-        em.persist(location);
-        em.close();
-        LOGGER.info("persisted location " + location.toString());
+        try {
+            LOGGER.info("persisting location " + location.toString());
+            utx.begin();
+            em.persist(location);
+            utx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                    utx.rollback();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         return true;
     }
