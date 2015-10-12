@@ -4,12 +4,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
 
 import com.ibm.bh6.dao.DBCheckinQuery;
-import com.ibm.bh6.dao.DBHandler;
 import com.ibm.bh6.model.CheckIn;
 
 public class DBCheckinQueryImpl implements DBCheckinQuery {
@@ -20,15 +21,15 @@ public class DBCheckinQueryImpl implements DBCheckinQuery {
     private EntityManager em;
 
     public DBCheckinQueryImpl() {
-        utx = DBHandler.getUserTransaction();
-        em = DBHandler.getEntityManager();
+        utx = getUserTransaction();
+        em = getEm();
     }
 
     @Override
     public List<CheckIn> getCurrentCheckIns() {
         LOGGER.info("Get current check-ins");
 
-        TypedQuery<CheckIn> typedQuery = em.createQuery("SELECT c FROM CheckIn c WHERE c.m_timestamp > :currentTime - 60000", CheckIn.class);
+        TypedQuery<CheckIn> typedQuery = em.createQuery("SELECT c FROM CheckIn c WHERE c.m_timestamp ORDER BY c.m_timestamp", CheckIn.class);
         typedQuery.setParameter("currentTime", new Date());
         List<CheckIn> result = typedQuery.getResultList();
 
@@ -57,6 +58,28 @@ public class DBCheckinQueryImpl implements DBCheckinQuery {
         }
 
         return true;
+    }
+
+    private EntityManager getEm() {
+        InitialContext ic;
+        try {
+            ic = new InitialContext();
+            return (EntityManager) ic.lookup("java:comp/env/openjpa-todo/entitymanager");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private UserTransaction getUserTransaction() {
+        InitialContext ic;
+        try {
+            ic = new InitialContext();
+            return (UserTransaction) ic.lookup("java:comp/UserTransaction");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

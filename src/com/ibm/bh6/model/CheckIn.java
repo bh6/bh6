@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -21,10 +22,10 @@ public class CheckIn {
     @Column(name = "timestamp")
     private Date m_timestamp;
 
-    @Column(name = "user")
+    @JoinColumn(name = "user")
     private User m_user;
 
-    @Column(name = "location")
+    @JoinColumn(name = "location")
     private Location location;
 
     public CheckIn() {
