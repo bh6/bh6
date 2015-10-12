@@ -13,6 +13,8 @@ import javax.ws.rs.core.Response;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.ibm.bh6.dao.DBUserQuery;
+import com.ibm.bh6.dao.impl.DBUserQueryImpl;
 import com.ibm.bh6.model.Location;
 import com.ibm.bh6.model.User;
 
@@ -24,12 +26,9 @@ public class UserResource {
 	@Path("find")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response find() {
-		ArrayList<User> users = new ArrayList<User>();
-		User u = new User();
-		users.add(u);
+		DBUserQuery db = new DBUserQueryImpl();
 		
-		
-		return Response.ok(getJSON(users).toString()).build();
+		return Response.ok(getJSON(db.getUsers()).toString()).build();
 	}
 
 	private JsonElement getJSON(Collection<User> users) {
