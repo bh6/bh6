@@ -37,6 +37,9 @@ public class Location {
     @Column(name = "gps_y")
     private Float m_GPSy;
 
+    public Location() {
+    };
+
     public Location(String inName, String inLocType) {
         m_Name = new String(inName);
         m_LocType = new String(inLocType);
