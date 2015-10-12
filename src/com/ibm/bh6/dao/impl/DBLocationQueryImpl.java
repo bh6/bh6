@@ -21,7 +21,7 @@ public class DBLocationQueryImpl implements DBLocationQuery {
 
         LOGGER.info("Get location with id  " + locationId);
 
-        TypedQuery<Location> typedQuery = em.createQuery("SELECT l FROM Location l WHERE l.locationId =_:locationId", Location.class);
+        TypedQuery<Location> typedQuery = em.createQuery("SELECT l FROM Location l WHERE l.locationId =:locationId", Location.class);
         typedQuery.setParameter("locationId", locationId);
         Location result = typedQuery.getSingleResult();
 
