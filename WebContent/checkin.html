@@ -3,7 +3,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Where your are?</title>
-<link rel="stylesheet" type="text/css" href="../WebContent/css/login.css" />
+<!-- Include Google API  -->
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <!-- Include jQuery Mobile stylesheets -->
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <!-- Include the jQuery library -->
@@ -11,6 +12,8 @@
 <!-- Include the jQuery Mobile library -->
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
+
+<link rel="stylesheet" type="text/css" href="../WebContent/css/checkin.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript"> 
 function update_list(updatedLocation) {
@@ -20,7 +23,8 @@ function update_list(updatedLocation) {
 	  $('#location .list li').remove();
 
 	  $.each(updatedLocation, function(index,locationName) {
-	    $('#location .list').append('<li data-role="listview" data-inset="true" data-split-icon="star"><h3 class="name">'+locationName.name+'</h3></li>')
+	    $('#location .list').append('<li  class="ui-listview" data-role="listview"><a class= "ui-btn ui-btn-icon-right ui-icon-carat-r" href="../WebContent/userlist.html"><h3 class="name">'+locationName.name+'</h3></a></li>')
+	    
 	  });
 	};
 	
@@ -55,9 +59,10 @@ function update(){
 }
 
 //Example by AJAX get using a made-up URL
-
-
 </script>
+
+
+
 
 
 </head>
@@ -66,21 +71,49 @@ function update(){
 
 <div class="container">
 	<section id="content">
+			
 		<form action="">
 			<h1> Where are you? </h1>
-			<div id="location">
-			  <ul class="list">
-			  
-				   <li >
-				      <h3 class="name">name1</h3>
+
+			<div id="location">		
+				<div id="pos"">
+        			Deine Position wird ermittelt...
+            	</div>	
+            <script>
+		        function initialize(coords) {
+		            var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
+		            var myOptions = {
+		                zoom: 8,
+		                center: latlng,
+		                mapTypeId: google.maps.MapTypeId.ROADMAP
+		            };
+		            var map = new google.maps.Map(document.getElementById("pos"), myOptions);
+		            
+		            var marker = new google.maps.Marker({
+		                position: latlng, 
+		                map: map, 
+		                title: "Hier bist du :)"
+		            }); 
+		        }
+		  
+		        navigator.geolocation.getCurrentPosition(function(position){ 
+		            initialize(position.coords);
+		        }, function(){
+		            document.getElementById('pos').innerHTML = 'Deine Position konnte leider nicht ermittelt werden';
+		        });
+			</script>	
+            	
+			  <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">			  
+				   <li>
+				      <a href="#"><h3 class="name">Berlin</h3></a>
 				    </li>
 				    <li>
-				      <h3 class="name">name2</h3>
+				      <a href="#"><h3 class="name">Stuttgart</h3></a>
 				    </li>
-			  </ul>
-			  <ul data-role="listview" data-inset="true" data-split-icon="star"><li><a href="#"><h3>Bantamgewicht</h3>
-			  
-			  
+				    <li>
+				      <a href="#"><h3 class="name">Frankfurt</h3></a>
+				    </li>
+			  </ul> 
 			</div>
 		</form><!-- form -->
 	</section><!-- content -->
