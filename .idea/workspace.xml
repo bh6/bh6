@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="818f8233-4aad-496e-b7a9-b3f22f798d7d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/css/facesdetail.css" afterPath="$PROJECT_DIR$/WebContent/css/facesdetail.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/userlist.html" afterPath="$PROJECT_DIR$/WebContent/userlist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -41,8 +40,8 @@
       <file leaf-file-name="checkin.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/checkin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.775">
-              <caret line="74" column="1" selection-start-line="74" selection-start-column="1" selection-end-line="74" selection-end-column="1" />
+            <state vertical-scroll-proportion="-13.55">
+              <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -63,15 +62,15 @@
       <file leaf-file-name="userlist.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/userlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.5602503">
-              <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.24256651">
+              <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#li#0;n#ul#0;n#form#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1444738180030" expanded="true" signature="2090:2109" placeholder="..." />
-                <marker date="1444738180030" expanded="true" signature="2111:2171" placeholder="..." />
-                <marker date="1444738180030" expanded="true" signature="2241:2263" placeholder="..." />
-                <marker date="1444738180030" expanded="true" signature="2358:2384" placeholder="..." />
-                <marker date="1444738180030" expanded="true" signature="2871:2890" placeholder="..." />
+                <marker date="1444739621121" expanded="true" signature="2285:2304" placeholder="..." />
+                <marker date="1444739621121" expanded="true" signature="2306:2366" placeholder="..." />
+                <marker date="1444739621121" expanded="true" signature="2436:2458" placeholder="..." />
+                <marker date="1444739621121" expanded="true" signature="2553:2579" placeholder="..." />
+                <marker date="1444739621121" expanded="true" signature="3066:3085" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -338,8 +337,6 @@
           <PATH vcs="Git" revision="">$PROJECT_DIR$/WebContent/checkin.html</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/WebContent/css/checkin.css</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/ibm/bh6/dao/impl/DBCheckinQueryImpl.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/ibm/bh6/rest/CheckInResource.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/ibm/bh6/rest/UserResource.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1149,7 +1146,7 @@
       <workItem from="1444663015210" duration="3020000" />
       <workItem from="1444666059261" duration="293000" />
       <workItem from="1444666373574" duration="1510000" />
-      <workItem from="1444677559306" duration="20114000" />
+      <workItem from="1444677559306" duration="21447000" />
     </task>
     <task id="LOCAL-00001" summary="updated intellij project">
       <created>1444716124809</created>
@@ -1163,11 +1160,17 @@
       <option name="project" value="LOCAL" />
       <updated>1444732472815</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="updated working userlist.html">
+      <created>1444738359980</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1444738359980</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32486000" />
+    <option name="totallyTimeSpent" value="33819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="31" width="2560" height="1409" extended-state="6" />
@@ -1219,7 +1222,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated intellij project" />
     <MESSAGE value="added facesdetail.css, updated userlist" />
-    <option name="LAST_COMMIT_MESSAGE" value="added facesdetail.css, updated userlist" />
+    <MESSAGE value="updated working userlist.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated working userlist.html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1497,23 +1501,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/checkin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.775">
-          <caret line="74" column="1" selection-start-line="74" selection-start-column="1" selection-end-line="74" selection-end-column="1" />
+        <state vertical-scroll-proportion="-13.55">
+          <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/userlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.5602503">
-          <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.24256651">
+          <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#form#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1444738180030" expanded="true" signature="2090:2109" placeholder="..." />
-            <marker date="1444738180030" expanded="true" signature="2111:2171" placeholder="..." />
-            <marker date="1444738180030" expanded="true" signature="2241:2263" placeholder="..." />
-            <marker date="1444738180030" expanded="true" signature="2358:2384" placeholder="..." />
-            <marker date="1444738180030" expanded="true" signature="2871:2890" placeholder="..." />
+            <marker date="1444739621121" expanded="true" signature="2285:2304" placeholder="..." />
+            <marker date="1444739621121" expanded="true" signature="2306:2366" placeholder="..." />
+            <marker date="1444739621121" expanded="true" signature="2436:2458" placeholder="..." />
+            <marker date="1444739621121" expanded="true" signature="2553:2579" placeholder="..." />
+            <marker date="1444739621121" expanded="true" signature="3066:3085" placeholder="..." />
           </folding>
         </state>
       </provider>

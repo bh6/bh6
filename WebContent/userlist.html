@@ -35,6 +35,9 @@
                 if(jQuery.isEmptyObject(userName.imgurl)){
                     userName.imgurl = "./images/profile.jpg";
                 }
+                if(jQuery.isEmptyObject(userName.skills)){
+                    userName.skills = [{"id":"-1","name":"No skills registered, please update profile!","level":""}];
+                }
                 var htmlstr = "";
                 htmlstr += "<li id=\"userlist-";
                 htmlstr +=index;
@@ -69,25 +72,28 @@
 
                 htmlstr += "<div class=\"facesdetailinfo facesdetaildisplaynone card-tr\">" +
                         "<div class=\"card-td\"><hr></div>";
-                /*
-                htmlstr +=
-                        "<div class=\"profile-name\">"+userName.lastcheckinglocation.name+"</div>" +
-                        "<div class=\"profile-name\">"+
-                        userName.lastcheckinglocation.adress.street + " " +
-                        userName.lastcheckinglocation.adress.number +
-                        "</div>" +
-                        "<div class=\"profile-name\">"+
-                        userName.lastcheckinglocation.adress.plz + " " +
-                        userName.lastcheckinglocation.adress.stadt +
-                        "</div>" +
-                        "<div class=\"card-td\"><hr></div>";
-                        */
+
+                if(!jQuery.isEmptyObject(userName.lastcheckinglocation)){
+                    htmlstr +=
+                            "<div class=\"profile-name\">"+userName.lastcheckinglocation.name+"</div>" +
+                            "<div class=\"profile-name\">"+
+                            userName.lastcheckinglocation.adress.street + " " +
+                            userName.lastcheckinglocation.adress.number +
+                            "</div>" +
+                            "<div class=\"profile-name\">"+
+                            userName.lastcheckinglocation.adress.plz + " " +
+                            userName.lastcheckinglocation.adress.stadt +
+                            "</div>" +
+                            "<div class=\"card-td\"><hr></div>";
+                }
 
                 $.each(userName.skills, function (index, skill){
-                    htmlstr +="<div class=\"profile-name\">" +
-                            skill.name + ", Expertise " +
-                            skill.level +
-                            "</div>";
+                    htmlstr += "<div class=\"profile-name\">" +
+                            skill.name;
+                    if(skill.id!="-1") {
+                        htmlstr += ", Expertise " + skill.level;
+                    }
+                    htmlstr += "</div>";
                 });
 
                 htmlstr += "</div></div></div>";
