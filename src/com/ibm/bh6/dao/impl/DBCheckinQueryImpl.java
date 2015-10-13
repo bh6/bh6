@@ -39,7 +39,8 @@ public class DBCheckinQueryImpl implements DBCheckinQuery {
     public List<CheckIn> getClosestCheckIns(Float gpsX, Float gpsY) {
         LOGGER.info("Get closest check-ins");
 
-        TypedQuery<CheckIn> typedQuery = em.createQuery("SELECT c FROM CheckIn c ORDER BY ABS(c.location.m_GPSx - :gpsX + c.location.m_GPSy - :gpsY", CheckIn.class);
+        TypedQuery<CheckIn> typedQuery = em.createQuery(
+                "SELECT c FROM CheckIn c ORDER BY ABS(SQRT((c.location.m_GPSx - :gpsX)*(c.location.m_GPSx - :gpsX) + (c.location.m_GPSy - :gpsY)*(c.location.m_GPSy - :gpsY)))", CheckIn.class);
         typedQuery.setParameter("gpsX", gpsX);
         typedQuery.setParameter("gpsY", gpsY);
         List<CheckIn> result = typedQuery.getResultList();
