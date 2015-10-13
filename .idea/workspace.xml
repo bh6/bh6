@@ -52,15 +52,15 @@
       <file leaf-file-name="userlist.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/userlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11580595">
-              <caret line="139" column="12" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.17527387">
+              <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#li#0;n#ul#0;n#form#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1444742790884" expanded="true" signature="2285:2304" placeholder="..." />
-                <marker date="1444742790884" expanded="true" signature="2306:2366" placeholder="..." />
-                <marker date="1444742790884" expanded="true" signature="2436:2458" placeholder="..." />
-                <marker date="1444742790884" expanded="true" signature="2553:2579" placeholder="..." />
-                <marker date="1444742790884" expanded="true" signature="3066:3085" placeholder="..." />
+                <marker date="1444743674721" expanded="true" signature="2285:2304" placeholder="..." />
+                <marker date="1444743674721" expanded="true" signature="2306:2366" placeholder="..." />
+                <marker date="1444743674721" expanded="true" signature="2436:2458" placeholder="..." />
+                <marker date="1444743674721" expanded="true" signature="2553:2579" placeholder="..." />
+                <marker date="1444743674721" expanded="true" signature="3066:3085" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -328,7 +328,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/ibm/bh6/rest/UserResource.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/WebContent/checkin.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/WebContent/index.html</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -336,6 +337,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/WebContent/images/google_big.JPG</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1138,7 +1140,7 @@
       <workItem from="1444663015210" duration="3020000" />
       <workItem from="1444666059261" duration="293000" />
       <workItem from="1444666373574" duration="1510000" />
-      <workItem from="1444677559306" duration="24637000" />
+      <workItem from="1444677559306" duration="25424000" />
     </task>
     <task id="LOCAL-00001" summary="updated intellij project">
       <created>1444716124809</created>
@@ -1170,15 +1172,21 @@
       <option name="project" value="LOCAL" />
       <updated>1444741454117</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="bugfix@userlist.html / enter forward to new page.">
+      <created>1444742861379</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1444742861379</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37009000" />
+    <option name="totallyTimeSpent" value="37796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="31" width="2560" height="1409" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1190,7 +1198,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3299578" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3299578" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36202532" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1516,15 +1524,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/userlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11580595">
-          <caret line="139" column="12" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.17527387">
+          <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#form#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1444742790884" expanded="true" signature="2285:2304" placeholder="..." />
-            <marker date="1444742790884" expanded="true" signature="2306:2366" placeholder="..." />
-            <marker date="1444742790884" expanded="true" signature="2436:2458" placeholder="..." />
-            <marker date="1444742790884" expanded="true" signature="2553:2579" placeholder="..." />
-            <marker date="1444742790884" expanded="true" signature="3066:3085" placeholder="..." />
+            <marker date="1444743674721" expanded="true" signature="2285:2304" placeholder="..." />
+            <marker date="1444743674721" expanded="true" signature="2306:2366" placeholder="..." />
+            <marker date="1444743674721" expanded="true" signature="2436:2458" placeholder="..." />
+            <marker date="1444743674721" expanded="true" signature="2553:2579" placeholder="..." />
+            <marker date="1444743674721" expanded="true" signature="3066:3085" placeholder="..." />
           </folding>
         </state>
       </provider>

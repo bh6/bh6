@@ -124,7 +124,12 @@
         }
     </script>
     <script type="application/javascript">
-        // Prevent submitting the page on enter.
+
+        $(document).onreadystatechange(function(){
+            if(script.readyState == 'loaded' || script.readyState == 'complete') {
+                update();
+            }
+        });
 
         function update() {
             // Update it
