@@ -1,79 +1,31 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6 ielt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-<title>Java DB Sample Application</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport"
-	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="../WebContent/css/login.css" />
 </head>
-<body >
-	<div class = "leftHalf">
-<img class = "newappIcon" src="images/newapp-icon.png" />
-				<h1>
-					Welcome to the <span class="blue">Java DB Web Starter</span> on Bluemix!
-				</h1>
-				<p class = "description">Get started by reading our <a href = "https://www.ng.bluemix.net/docs/#starters/liberty/index.html#liberty">Java documentation</a> or use the Start Coding guide under your app in your dashboard.</p>
-	</div>
-	<div class = "rightHalf">
-	<div class = "center">
-	<header>
-					<div class='title'>
-						Java DB Web Starter
-						<button class='detailBtn' onclick="toggleServiceInfo()"
-							title='toggle service info'>
-							<img src='images/detail.png' alt='detail' />
-						</button>
-					</div>
-				</header>
-				<section id='dbserviceinfo' style='display: none;'>
-					<table class = "todolist">
-						<tbody>
-							<tr>
-								<td class='fieldname'>Service Name</td>
-								<td id='envServiceName'></td>
-							</tr>
-							<tr>
-								<td class='fieldname'>DB Name</td>
-								<td id='envDbName'></td>
-							</tr>
-							<tr>
-								<td class='fieldname'>Host</td>
-								<td id='envHost'></td>
-							</tr>
-							<tr>
-								<td class='fieldname'>Port</td>
-								<td id='envPort'></td>
-							</tr>
-							<tr>
-								<td class='fieldname'>User Name</td>
-								<td id='envUser'>*****</td>
-							</tr>
-							<tr>
-								<td class='fieldname'>Password</td>
-								<td id='envPassword'>*****</td>
-							</tr>
-							<tr>
-								<td class='fieldname'>URL</td>
-								<td id='envUrl'></td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-				<table id='notes' class='records'><tbody></tbody></table>
-				<div id="loading">&nbsp;&nbsp;Please wait while the database is being initialized ...</div>
-				<footer>
-					<div class='tips'>
-						Click the Add button to add a record.
-						<button class='addBtn' onclick="addItem()" title='add record'>
-							<img src='images/add.png' alt='add' />
-						</button>
-					</div>
-				</footer> <script type="text/javascript" src="util.js"></script> <script
-					type="text/javascript" src="index.js"></script>
-					
-					</div>
-</div>
+<body>
+<div class="container">
+	<section id="content">
+		<form action="../WebContent/checkin.html">
+			<h1>Login Form</h1>
+			<div>
+				<input type="text" placeholder="Username" required="" id="username" />
+			</div>
+			<div>
+				<input type="password" placeholder="Password" required="" id="password" />
+			</div>
+			<div>
+				<input type="submit" value="Log in" />
+				<a href="#">Lost your password?</a>
+				<a href="#">Register</a>
+			</div>
+		</form><!-- form -->
+	</section><!-- content -->
+</div><!-- container -->
 </body>
 </html>
