@@ -6,4 +6,5 @@ LOCATION_ID;BRICK;CITY;GPS_X;GPS_Y;NAME;STREET;HNR;LOC_TYPE
 5;38440;Wolfsburg;52.430023;10.784048;VW AG;Berliner Ring;2;CUSTOMER
 6;80788;München;48.177007;11.561024;BMW AG;Petuelring;130;CUSTOMER
 7;71032;Böblingen;48.665961;9.037728;IBM Deutschland Research & Development;Schönaicher Str.;220;CUSTOMER
-8;71032;Böblingen;48.668219;9.036206;Restaurantbetrieb IBM-Klub;Schönaicher Str;216;
+8;71032;Böblingen;48.668219;9.036206;Restaurantbetrieb IBM-Klub;Schönaicher Str;216;HOTEL
+9;71034;Böblingen;48.685508;8.987671;Mercure Hotel Stuttgart Boeblingen;Otto-Lilienthal-Str.;18;HOTEL
