@@ -28,12 +28,29 @@ import com.ibm.bh6.model.User;
 
 public class UserResource {
 
+	private static final int maxUserResults = 50;
+
+	@GET
+	@Path("debugFind")
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response findDebug(@QueryParam("x") float x, @QueryParam("y") float y) {
+		DBCheckinQuery dbCheckin = new DBCheckinQueryImpl();
+		List<CheckIn> checkins = dbCheckin.getClosestCheckIns(x, y);
+
+		String s = "";
+
+		for (CheckIn checkIn : checkins) {
+			s += checkIn.getLocation().getGPSx() + "/" + checkIn.getLocation().getGPSx() + "\n";
+
+		}
+		return CORSResponse.ok(s).build();
+	}
+
 	@GET
 	@Path("find")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response find(@QueryParam("text-basic") String searchstring, @QueryParam("x") float x,
 			@QueryParam("y") float y) {
-		ArrayList<User> resultList = new ArrayList<User>();
 		if (x < 47 || x > 52) {
 			x = 48.6f;
 		}
@@ -45,45 +62,29 @@ public class UserResource {
 		DBUserQuery db = new DBUserQueryImpl();
 		DBCheckinQuery dbCheckin = new DBCheckinQueryImpl();
 
-		// old List<User> c = db.getUsers();
-
+		
 		// Get Checkins by current location
 		List<CheckIn> checkins = dbCheckin.getClosestCheckIns(x, y);
+		List<CheckIn> checkinsFinal = new ArrayList<CheckIn>();
+		System.out.println("DB suche liefert " + checkins.size() + " Ergebnisse");
 
-		HashMap<User, CheckIn> c = new HashMap<User, CheckIn>();
-		if (checkins != null) {
-
-			// Get Users from this checkins to list "c"
-
-			for (CheckIn checkin : checkins) {
-				c.put(checkin.getUser(), checkin);
-			}
-
-			if (searchstring != null && searchstring.length() > 0) {
-				String[] searchTokens = searchstring.toLowerCase().split(" ");
-
-				if (searchTokens.length > 0) {
-					HashMap<User, CheckIn> oldList = c;
-					c = new HashMap<User, CheckIn>();
-					for (User user : oldList.keySet()) {
-						if (userMatchFilter(searchTokens, user, oldList.get(user)))
-							c.put(user, oldList.get(user));
-					}
+		if (checkins != null && searchstring != null && searchstring.length() > 0) {
+			String[] searchTokens = searchstring.toLowerCase().split(" ");
+			if (searchTokens.length > 0) {
+				for (CheckIn thisCheckIn : checkins) {
+					if (userMatchFilter(searchTokens, thisCheckIn))
+						checkinsFinal.add(thisCheckIn);
 				}
 			}
 
-			// TODO: Now limit to 5
-			HashMap<User, CheckIn> completeList = c;
-			resultList = new ArrayList<User>();
-			for (int i = 0; i < 5; i++) {
-				resultList.add((User) completeList.keySet().toArray()[i]);
-			}
-
+		} else {
+			checkinsFinal = checkins;
 		}
-		return CORSResponse.ok(getJSON(resultList).toString()).build();
+		return CORSResponse.ok(getJSON(checkinsFinal).toString()).build();
 	}
 
-	private boolean userMatchFilter(String[] searchtokens, User u, CheckIn checkin) {
+	private boolean userMatchFilter(String[] searchtokens, CheckIn checkin) {
+		User u = checkin.getUser();
 		boolean allTokensFound = true;
 		for (int i = 0; i < searchtokens.length && allTokensFound; i++) {
 			String currentToken = searchtokens[i];
@@ -97,26 +98,29 @@ public class UserResource {
 			if (checkin != null && checkin.getLocation() != null
 					&& checkin.getLocation().getName().toLowerCase().indexOf(currentToken) > -1)
 				continue;
-			
-			
 			allTokensFound = false;
 		}
-
 		return allTokensFound;
 	}
 
-	private JsonElement getJSON(Collection<User> users) {
+	private JsonElement getJSON(List<CheckIn> checkins) {
 		JsonArray resultArray = new JsonArray();
-
-		for (Iterator<User> it = users.iterator(); it.hasNext();) {
-			JsonElement e = getJSON((User) it.next());
+		int i = 0;
+		for (Iterator<CheckIn> it = checkins.iterator(); it.hasNext();) {
+			System.out.println("iteration");
+			CheckIn currCheckin = it.next();
+			User currUser = currCheckin.getUser();
+			JsonElement e = getJSON(currUser, currCheckin);
 			resultArray.add(e);
+			i++;
+			if (i == maxUserResults)
+				return resultArray;
 		}
 
 		return resultArray;
 	}
 
-	public JsonElement getJSON(User u) {
+	public JsonElement getJSON(User u, CheckIn c) {
 
 		if (u == null) {
 			return new JsonObject();
@@ -134,6 +138,27 @@ public class UserResource {
 		contact.addProperty("email", u.getEmail());
 		jsonObject.add("contact", contact);
 		injectFakeSkills(u, jsonObject);
+
+		if (c != null) {
+			JsonObject lastCheckinLocation = new JsonObject();
+			lastCheckinLocation.addProperty("id", c.getCheckInId());
+			lastCheckinLocation.addProperty("name", c.getLocation().getName());
+			lastCheckinLocation.addProperty("type", c.getLocation().getLocType());
+
+			JsonObject gps = new JsonObject();
+			gps.addProperty("x", c.getLocation().getGPSx());
+			gps.addProperty("y", c.getLocation().getGPSy());
+			lastCheckinLocation.add("gps", gps);
+
+			JsonObject adr = new JsonObject();
+			adr.addProperty("street", c.getLocation().getStreet());
+			adr.addProperty("number", c.getLocation().gethnr());
+			adr.addProperty("plz", c.getLocation().getBrick());
+			adr.addProperty("stadt", c.getLocation().getCity());
+			lastCheckinLocation.add("adress", adr);
+
+			jsonObject.add("lastcheckinglocation", lastCheckinLocation);
+		}
 
 		return jsonObject;
 	}

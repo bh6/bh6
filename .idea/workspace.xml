@@ -37,16 +37,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="checkin.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/checkin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.55">
-              <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SessionResource.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ibm/bh6/rest/SessionResource.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -62,15 +52,15 @@
       <file leaf-file-name="userlist.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/userlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24256651">
-              <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.11580595">
+              <caret line="139" column="12" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="12" />
               <folding>
                 <element signature="n#style#0;n#li#0;n#ul#0;n#form#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1444739621121" expanded="true" signature="2285:2304" placeholder="..." />
-                <marker date="1444739621121" expanded="true" signature="2306:2366" placeholder="..." />
-                <marker date="1444739621121" expanded="true" signature="2436:2458" placeholder="..." />
-                <marker date="1444739621121" expanded="true" signature="2553:2579" placeholder="..." />
-                <marker date="1444739621121" expanded="true" signature="3066:3085" placeholder="..." />
+                <marker date="1444742790884" expanded="true" signature="2285:2304" placeholder="..." />
+                <marker date="1444742790884" expanded="true" signature="2306:2366" placeholder="..." />
+                <marker date="1444742790884" expanded="true" signature="2436:2458" placeholder="..." />
+                <marker date="1444742790884" expanded="true" signature="2553:2579" placeholder="..." />
+                <marker date="1444742790884" expanded="true" signature="3066:3085" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -148,6 +138,9 @@
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -159,6 +152,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/WebContent/css/facesdetail.css" />
+        <option value="$PROJECT_DIR$/WebContent/checkin.html" />
         <option value="$PROJECT_DIR$/WebContent/userlist.html" />
       </list>
     </option>
@@ -334,9 +328,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/WebContent/checkin.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/WebContent/css/checkin.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/ibm/bh6/dao/impl/DBCheckinQueryImpl.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/ibm/bh6/rest/UserResource.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1146,7 +1138,7 @@
       <workItem from="1444663015210" duration="3020000" />
       <workItem from="1444666059261" duration="293000" />
       <workItem from="1444666373574" duration="1510000" />
-      <workItem from="1444677559306" duration="21447000" />
+      <workItem from="1444677559306" duration="24637000" />
     </task>
     <task id="LOCAL-00001" summary="updated intellij project">
       <created>1444716124809</created>
@@ -1166,11 +1158,23 @@
       <option name="project" value="LOCAL" />
       <updated>1444738359980</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="updated working userlist.html">
+      <created>1444739654978</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1444739654978</updated>
+    </task>
+    <task id="LOCAL-00005" summary="bugfix@userlist.html / enter forward to new page.">
+      <created>1444741454117</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1444741454117</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33819000" />
+    <option name="totallyTimeSpent" value="37009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="31" width="2560" height="1409" extended-state="6" />
@@ -1223,7 +1227,8 @@
     <MESSAGE value="updated intellij project" />
     <MESSAGE value="added facesdetail.css, updated userlist" />
     <MESSAGE value="updated working userlist.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated working userlist.html" />
+    <MESSAGE value="bugfix@userlist.html / enter forward to new page." />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix@userlist.html / enter forward to new page." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1457,14 +1462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ibm/bh6/rest/SessionResource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1491,6 +1488,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/checkin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3802009">
+          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/css/faces.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-73.22414">
@@ -1499,25 +1514,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/checkin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.55">
-          <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/userlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24256651">
-          <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.11580595">
+          <caret line="139" column="12" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="12" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#form#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1444739621121" expanded="true" signature="2285:2304" placeholder="..." />
-            <marker date="1444739621121" expanded="true" signature="2306:2366" placeholder="..." />
-            <marker date="1444739621121" expanded="true" signature="2436:2458" placeholder="..." />
-            <marker date="1444739621121" expanded="true" signature="2553:2579" placeholder="..." />
-            <marker date="1444739621121" expanded="true" signature="3066:3085" placeholder="..." />
+            <marker date="1444742790884" expanded="true" signature="2285:2304" placeholder="..." />
+            <marker date="1444742790884" expanded="true" signature="2306:2366" placeholder="..." />
+            <marker date="1444742790884" expanded="true" signature="2436:2458" placeholder="..." />
+            <marker date="1444742790884" expanded="true" signature="2553:2579" placeholder="..." />
+            <marker date="1444742790884" expanded="true" signature="3066:3085" placeholder="..." />
           </folding>
         </state>
       </provider>

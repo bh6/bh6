@@ -65,7 +65,7 @@ public class DBCheckinQueryImpl implements DBCheckinQuery {
         typedQuery.setParameter("gpsY", gpsY);
         List<CheckIn> result = typedQuery.getResultList();
 
-        return null;
+        return result;
     }
 
     @Override
