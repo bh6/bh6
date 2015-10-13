@@ -59,7 +59,7 @@ public class DBCheckinQueryImpl implements DBCheckinQuery {
         // Root r = q.from(Location.class);
         // q.select(r);
 
-        TypedQuery<CheckIn> typedQuery = em.createQuery("SELECT c FROM CheckIn c JOIN c.location l JOIN c.user u "
+        TypedQuery<CheckIn> typedQuery = em.createQuery("SELECT c FROM CheckIn c JOIN c.location l "
                 + "ORDER BY ABS(SQRT((l.m_GPSx - :gpsX)*(l.m_GPSx - :gpsX) + (l.m_GPSy - :gpsY)*(l.m_GPSy - :gpsY)))", CheckIn.class);
         typedQuery.setParameter("gpsX", gpsX);
         typedQuery.setParameter("gpsY", gpsY);
