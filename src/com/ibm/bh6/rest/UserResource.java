@@ -59,8 +59,55 @@ public class UserResource {
 		contact.addProperty("mobile",u.getPhoneOffice());
 		contact.addProperty("email", u.getEmail());
 		jsonObject.add("contact", contact);
-
+		injectFakeSkills(u,jsonObject);
+		
 		return jsonObject;
+	}
+	
+	private void injectFakeSkills(User u, JsonObject j) {
+		JsonArray skillArry=new JsonArray();
+		JsonObject s;
+		if (u.getJobDesc().toLowerCase().contains("architekt")) {
+			s=new JsonObject();
+			s.addProperty("id", "1");
+			s.addProperty("name", "IT Architektur");
+			s.addProperty("level", "2");
+			skillArry.add(s);
+		}
+		
+		if (u.getJobDesc().toLowerCase().contains("consulting")) {
+			s=new JsonObject();
+			s.addProperty("id", "2");
+			s.addProperty("name", "Consulting");
+			s.addProperty("level", "2");
+			skillArry.add(s);
+		}
+		
+		if (u.getJobDesc().toLowerCase().contains("websphere") ||u.getJobDesc().toLowerCase().contains("was")) {
+			s=new JsonObject();
+			s.addProperty("id", "3");
+			s.addProperty("name", "WebSphere");
+			s.addProperty("level", "2");
+			skillArry.add(s);
+		}
+		
+		if (u.getJobDesc().toLowerCase().contains("websphere")) {
+			s=new JsonObject();
+			s.addProperty("id", "4");
+			s.addProperty("name", "Java");
+			s.addProperty("level", "2");
+			skillArry.add(s);
+		}
+			
+		if (u.getJobDesc().toLowerCase().contains("db2") || u.getJobDesc().toLowerCase().contains("database")) {
+			s=new JsonObject();
+			s.addProperty("id", "5");
+			s.addProperty("name", "DB2");
+			s.addProperty("level", "2");
+			skillArry.add(s);
+		}
+		
+		j.add("skills", skillArry);
 	}
 
 }
