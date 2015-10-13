@@ -39,7 +39,27 @@ public class DBCheckinQueryImpl implements DBCheckinQuery {
     public List<CheckIn> getClosestCheckIns(Float gpsX, Float gpsY) {
         LOGGER.info("Get closest check-ins");
 
-        TypedQuery<CheckIn> typedQuery = em.createQuery("SELECT c FROM CheckIn c INNER JOIN Location l ON c.location = l.locationId INNER JOIN User u ON c.user = u.userId "
+        // CriteriaBuilder builder = em.getCriteriaBuilder();
+        // CriteriaQuery<CheckIn> criteria = builder.createQuery(CheckIn.class);
+        // Metamodel m = em.getMetamodel();
+        // EntityType<CheckIn> checkIn_ = m.entity(CheckIn.class);
+        //
+        // Root<CheckIn> checkIn = criteria.from(CheckIn.class);
+        // Join<CheckIn, Location> location =
+        // checkIn.join(checkIn_.getSingularAttribute("location",
+        // Location.class));
+        //
+        //
+        //
+        // Root<CheckIn> cRoot = criteria.from(CheckIn.class);
+        // Join<CheckIn, Location> locJoin = criteria.join("location",
+        // JoinType.LEFT);
+        //
+        // CriteriaQuery q = builder.createQuery();
+        // Root r = q.from(Location.class);
+        // q.select(r);
+
+        TypedQuery<CheckIn> typedQuery = em.createQuery("SELECT c FROM CheckIn c JOIN c.location l JOIN c.user u "
                 + "ORDER BY ABS(SQRT((l.m_GPSx - :gpsX)*(l.m_GPSx - :gpsX) + (l.m_GPSy - :gpsY)*(l.m_GPSy - :gpsY)))", CheckIn.class);
         typedQuery.setParameter("gpsX", gpsX);
         typedQuery.setParameter("gpsY", gpsY);
