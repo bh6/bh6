@@ -124,9 +124,8 @@
         }
     </script>
     <script type="application/javascript">
-        $("#finderinpout").submit(function(e) {
-            e.preventDefault();
-        });
+        // Prevent submitting the page on enter.
+
         function update() {
             // Update it
             var updateUsers = $.get( "http://bbhackathon6.mybluemix.net/api/user/find", function() {
@@ -134,8 +133,11 @@
             });
             document.querySelector('#finderinpout').addEventListener('keypress', function (e) {
                 var key = e.which || e.keyCode;
+                $("#finderinpout").submit(function(e) {
+                    e.preventDefault();
+                });
                 if (key === 13) { // 13 is enter
-                    if (event.which == 13 || event.keyCode == 13) {
+                    if (e.which == 13 || e.keyCode == 13) {
                         //code to execute here
                         console.log("search");
                         e.preventDefault();
@@ -158,7 +160,7 @@
 
         <form action="">
                 <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">
-                    <li id="finderlist"  style="list-style-type:none;">
+                    <li id="finderlist" style="list-style-type:none;">
                         <input id="finderinpout" type="text" name="text-basic" id="text-basic" value="" placeholder="Search for skills available from nearby IBMer's...">
                     </li>
                 </ul>
@@ -166,7 +168,7 @@
             <div id="users">
                 <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">
                     <li>
-                        <a href="#"><h3 class="name">Berlin</h3></a>
+                        <!--<a href="#"><h3 class="name">Berlin</h3></a>-->
                     </li>
                 </ul>
             </div>
