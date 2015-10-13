@@ -27,7 +27,7 @@ public class SessionResource {
 			return Response.ok("You are now logged in").build();
 		}
 		performLogout(request);
-		return Response.ok("Loginfailed").build();
+		return CORSResponse.ok("Loginfailed").build();
 
 	}
 
@@ -44,7 +44,7 @@ public class SessionResource {
 			return Response.ok("User: " + u.getUserName()).build();
 		}
 
-		return Response.ok("No current User").build();
+		return CORSResponse.ok("No current User").build();
 	}
 
 	@GET
@@ -52,7 +52,7 @@ public class SessionResource {
 	@Path("/logout")
 	public Response logout(@Context HttpServletRequest request) {
 		performLogout(request);
-		return Response.ok("You are now logged out").build();
+		return CORSResponse.ok("You are now logged out").build();
 	}
 
 	private void performLogout(HttpServletRequest request) {

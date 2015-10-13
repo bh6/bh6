@@ -40,7 +40,7 @@ public class LocationResource {
 		DBLocationQuery q = new DBLocationQueryImpl();
 		Location l = q.getLocation(Integer.parseInt(id));
 
-		return Response.ok(getJSON(l).toString()).header("Access-Control-Allow-Origin", "*").build();
+		return CORSResponse.ok(getJSON(l).toString()).build();
 	}
 
 	@GET
@@ -55,7 +55,7 @@ public class LocationResource {
 		Logger.getAnonymousLogger().info("x:" + x + ",y: "+y);
 		DBLocationQueryImpl q = new DBLocationQueryImpl();
 		List<Location> locations = q.getLocationsByDistance(x, y);
-		return Response.ok(getJSON(locations).toString()).build();
+		return CORSResponse.ok(getJSON(locations).toString()).build();
 
 		/*
 		 * Location l1 = new Location ("Hotel1","HOTEL");
@@ -75,7 +75,7 @@ public class LocationResource {
 		 * Integer (10709) , new Float( 43.00), new Float (34.00));
 		 */
 
-		//return Response.ok(getJSON(locations).toString()).build();
+		//return CORSResponse.ok(getJSON(locations).toString()).build();
 	}
 
 	@GET
@@ -98,7 +98,7 @@ public class LocationResource {
 		// q.postLocation(l2);
 		// q.postLocation(l3);
 
-		return Response.ok("Result: " + result).build();
+		return CORSResponse.ok("Result: " + result).build();
 	}
 
 	public JsonElement getJSON(Collection<Location> locations) {

@@ -28,7 +28,7 @@ public class UserResource {
 	public Response find() {
 		DBUserQuery db = new DBUserQueryImpl();
 		
-		return Response.ok(getJSON(db.getUsers()).toString()).build();
+		return CORSResponse.ok(getJSON(db.getUsers()).toString()).build();
 	}
 
 	private JsonElement getJSON(Collection<User> users) {

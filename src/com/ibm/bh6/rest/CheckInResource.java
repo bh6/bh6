@@ -21,7 +21,7 @@ public class CheckInResource {
 		DBCheckinQuery db = new DBCheckinQueryImpl();
 		boolean result = db.createCheckIn(c);
 		
-		return Response.ok(result+": "+c.toString()).build();
+		return CORSResponse.ok(result+": "+c.toString()).build();
 	}
 	
 	
