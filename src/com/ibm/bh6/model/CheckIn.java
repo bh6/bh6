@@ -2,14 +2,13 @@ package com.ibm.bh6.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.ibm.bh6.dao.DBLocationQuery;
@@ -29,8 +28,9 @@ public class CheckIn {
     @Column(name = "timestamp")
     private Date m_timestamp;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    private User m_user;
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
 
     @JoinColumn(name = "location")
     private Location location;
@@ -56,18 +56,18 @@ public class CheckIn {
     }
 
     public User getUser() {
-        return m_user;
+        return user;
     }
 
     public void setUser(User m_user) {
-        this.m_user = m_user;
+        this.user = m_user;
     }
 
     public void setUserByUserID(int userid) {
         // TODO Das Userobject aus der db laden
         DBUserQuery db = new DBUserQueryImpl();
 
-        this.m_user = db.getUser(userid);
+        this.user = db.getUser(userid);
     }
 
     public Location getLocation() {
@@ -84,7 +84,7 @@ public class CheckIn {
     }
 
     public String toString() {
-        return "CheckinID: " + checkInId + ", User:" + m_user.getUserId() + ", Timestamp: " + m_timestamp.toString() + ", Location: " + location.getName();
+        return "CheckinID: " + checkInId + ", User:" + user.getUserId() + ", Timestamp: " + m_timestamp.toString() + ", Location: " + location.getName();
     }
 
 }
