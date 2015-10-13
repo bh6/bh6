@@ -2,40 +2,62 @@ package com.ibm.bh6.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.transaction.UserTransaction;
 
 import com.ibm.bh6.dao.DBUserQuery;
 import com.ibm.bh6.model.User;
 
 public class DBUserQueryImpl implements DBUserQuery {
 
+    private static final Logger LOGGER = Logger.getLogger(DBUserQueryImpl.class.getName());
+
+    private UserTransaction utx;
+    private EntityManager em;
+
+    public DBUserQueryImpl() {
+        utx = getUserTransaction();
+        em = getEm();
+    }
+
     @Override
     public List<User> getUsers() {
 
-        return getStubUsers();
+        LOGGER.info("Get all users");
+
+        TypedQuery<User> typedQuery = em.createQuery("SELECT u FROM User u", User.class);
+        List<User> results = typedQuery.getResultList();
+
+        return results;
 
     }
 
     @Override
-    public User getUser(int id) {
+    public User getUser(int userId) {
 
-        for (User u : getStubUsers()) {
-            if (id == u.getUserId()) {
-                return u;
-            }
-        }
+        LOGGER.info("Get user with id  " + userId);
 
-        return null;
+        TypedQuery<User> typedQuery = em.createQuery("SELECT u FROM User u WHERE u.userId = :userId", User.class);
+        typedQuery.setParameter("userId", userId);
+        User result = typedQuery.getSingleResult();
+
+        return result;
 
     }
 
-    public User getUser(String name) {
-        for (User u : getStubUsers()) {
-            if (name.equalsIgnoreCase(u.getUserName())) {
-                return u;
-            }
-        }
+    public List<User> getUsersByName(String userName) {
+        LOGGER.info("Get all users with name " + userName);
 
-        return null;
+        TypedQuery<User> typedQuery = em.createQuery("SELECT u FROM User u WHERE u.userName = :userName", User.class);
+        typedQuery.setParameter("userName", userName);
+        List<User> results = typedQuery.getResultList();
+
+        return results;
     }
 
     private List<User> getStubUsers() {
@@ -56,6 +78,28 @@ public class DBUserQueryImpl implements DBUserQuery {
 
         return userList;
 
+    }
+
+    private EntityManager getEm() {
+        InitialContext ic;
+        try {
+            ic = new InitialContext();
+            return (EntityManager) ic.lookup("java:comp/env/openjpa-todo/entitymanager");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private UserTransaction getUserTransaction() {
+        InitialContext ic;
+        try {
+            ic = new InitialContext();
+            return (UserTransaction) ic.lookup("java:comp/UserTransaction");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
