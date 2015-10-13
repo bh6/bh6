@@ -1,126 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Where are you?</title>
-<link rel="stylesheet" type="text/css" href="./css/checkin.css" />
-<!-- Include Google API  -->
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<!-- Include jQuery Mobile stylesheets -->
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<!-- Include the jQuery library -->
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<!-- Include the jQuery Mobile library -->
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta charset="ISO-8859-1">
+    <title>Where are you?</title>
+    <link rel="stylesheet" type="text/css" href="./css/checkin.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/faces.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/facesdetail.css"/>
+    <!-- Include Google API  -->
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-
-
-<!-- include Google API -->
-<script>
-	function initialize(coords) {
-	    var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
-	    var myOptions = {
-	        zoom: 2,
-	        center: latlng,
-	        mapTypeId: google.maps.MapTypeId.ROADMAP
-	    };
-	    var map = new google.maps.Map(document.getElementById("pos"), myOptions);
-	    
-	    var marker = new google.maps.Marker({
-	        position: latlng, 
-	        map: map, 
-	        title: "Hier bist du :)"
-	    }); 
-	}
-
-	 navigator.geolocation.getCurrentPosition(function(position){ 
-         initialize(position.coords);
-     }, function(){
-         document.getElementById('pos').innerHTML = 'Deine Position konnte leider nicht ermittelt werden';
-     });
-</script>
-
-<script type="text/javascript"> 
-function update_list(updatedLocation) {
-		console.log(updatedLocation)
-	  // clear the existing list
-	  $('#location .list li').remove();
-
-	  $.each(updatedLocation, function(index,locationName) {
-	    $('#location .list').append('<li  class="ui-listview" data-role="listview"><a class= "ui-btn ui-btn-icon-right ui-icon-carat-r" href="./userlist.html"><h3 class="name">'+locationName.name+'</h3></a></li>')
-	    
-	  });
-	};
-	
-</script>
-<script type="application/javascript">
-// Get the updated list
-function update(){ 
-	navigator.geolocation.getCurrentPosition(function(position){ 
-        document.getElementById('pos').innerHTML = 'Latitude: '+position.coords.latitude+' / Longitude: '+position.coords.longitude;
-        var updateLocation = $.get( "http://bbhackathon6.mybluemix.net/api/location/byDistance?x="+position.coords.latitude+"&y="+position.coords.longitude, function() {
-        		update_list(jQuery.parseJSON(updateLocation.responseText));
-        	});   	
-	}, function(){
-    	var updated_location = [{"id":"1","name":"IBM Deutschland Research & Development","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Resraurantbetrieb IBM-Klub","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"Hotel Restaurant Pfefferburg","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}];
-    	// Update it
-    	update_list(updated_location);
-    }, (function() {
-		//OPTIONAL check https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
-    })
-    );	
-}
-	//[{"id":"1","name":"Hotel1","type":"IBM Deutschland Research & Development","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Berlin","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"DKB","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}]
-	// [{"id":"1","name":"Mercure","type":"Hotel","gps":{"x":9.3,"y":9.3},"adress":{"street":"Hauptstr.","number":"3","plz":"12345"}}]
- 	//var updated_location = [{"id":"1","name":"IBM Deutschland Research & Development","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Resraurantbetrieb IBM-Klub","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"Hotel Restaurant Pfefferburg","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}];
-	// Update it
-	//updated_location[0].name
-	//update_list(updated_location);	
-/*	$.get('http://bbhackathon6.mybluemix.net/api/location/byDistance?x=9.3&y=3', function(data) {
-		type: 'GET',
-		//contentType: "text/plain",
-		dataType: 'json'
-		//data[0].name;
-})	 */
-
-</script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 
 
+    <!-- include Google API -->
+    <script>
+        function initialize(coords) {
+            var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
+            var myOptions = {
+                zoom: 2,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("pos"), myOptions);
 
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: "Hier bist du :)"
+            });
+        }
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+            initialize(position.coords);
+        }, function () {
+            document.getElementById('pos').innerHTML = 'Deine Position konnte leider nicht ermittelt werden';
+        });
+    </script>
+
+    <script type="text/javascript">
+        function update_list(updatedLocation) {
+            console.log(updatedLocation)
+            // clear the existing list
+            $('#location .list li').remove();
+
+            $.each(updatedLocation, function (index, locationName) {
+                $('#location .list').append('<li  class="ui-listview" data-role="listview"><a class= "ui-btn ui-btn-icon-right ui-icon-carat-r" href="./userlist.html"><h3 class="name">' + locationName.name + '</h3></a></li>')
+
+            });
+        }
+        ;
+
+    </script>
+    <script type="application/javascript">
+        // Get the updated list
+        function update() {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                        document.getElementById('pos').innerHTML = 'Latitude: ' + position.coords.latitude + ' / Longitude: ' + position.coords.longitude;
+                        var updateLocation = $.get("http://bbhackathon6.mybluemix.net/api/location/byDistance?x=" + position.coords.latitude + "&y=" + position.coords.longitude, function () {
+                            update_list(jQuery.parseJSON(updateLocation.responseText));
+                        });
+                    }, function () {
+                        var updated_location = [{
+                            "id": "1",
+                            "name": "IBM Deutschland Research & Development",
+                            "type": "HOTEL",
+                            "gps": {"x": 33.0, "y": 45.0},
+                            "adress": {"street": "KurfÃ¼rstendamm", "number": 100, "plz": 10709, "stadt": "Berlin"}
+                        }, {
+                            "id": "1",
+                            "name": "Resraurantbetrieb IBM-Klub",
+                            "type": "CITY",
+                            "gps": {"x": 33.0, "y": 45.0},
+                            "adress": {"street": "n/a", "number": -100, "plz": 10000, "stadt": "Berlin"}
+                        }, {
+                            "id": "1",
+                            "name": "Hotel Restaurant Pfefferburg",
+                            "type": "CUSTOMER",
+                            "gps": {"x": 43.0, "y": 34.0},
+                            "adress": {"street": "SchÃƒÂ¶nhauserstr.", "number": 765, "plz": 10709, "stadt": "Berlin"}
+                        }];
+                        // Update it
+                        update_list(updated_location);
+                    }, (function () {
+                        //OPTIONAL check https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+                    })
+            );
+        }
+        //[{"id":"1","name":"Hotel1","type":"IBM Deutschland Research & Development","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Berlin","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"DKB","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}]
+        // [{"id":"1","name":"Mercure","type":"Hotel","gps":{"x":9.3,"y":9.3},"adress":{"street":"Hauptstr.","number":"3","plz":"12345"}}]
+        //var updated_location = [{"id":"1","name":"IBM Deutschland Research & Development","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Resraurantbetrieb IBM-Klub","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"Hotel Restaurant Pfefferburg","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}];
+        // Update it
+        //updated_location[0].name
+        //update_list(updated_location);
+        /*	$.get('http://bbhackathon6.mybluemix.net/api/location/byDistance?x=9.3&y=3', function(data) {
+         type: 'GET',
+         //contentType: "text/plain",
+         dataType: 'json'
+         //data[0].name;
+         })	 */
+
+    </script>
 
 
 </head>
-<body onload="update();" style="background-color: #000000 !important;" >
+<body onload="update();" style="background-color: #000000 !important;">
 
 
 <div class="container">
-	<section id="content">
-			
-		<form action="">
-			<h1> Where are you? </h1>
+    <section id="content">
 
-			<div id="location">		
-				<img src="./images/google.jpg" alt="eine grafik" style="width: 360px; height: 220px">
-				<div id="pos" style="z-index:40000000000000;">			
-        			Deine Position wird ermittelt...
-            	</div>	
-            	<p></p>
-            
-			  <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">			  
-				   <li>
-				      <a href="#"><h3 class="name">Berlin</h3></a>
-				    </li>
-				    <li>
-				      <a href="#"><h3 class="name">Stuttgart</h3></a>
-				    </li>
-				    <li>
-				      <a href="#"><h3 class="name">Frankfurt</h3></a>
-				    </li>
-			  </ul> 
-			</div>
-		</form><!-- form -->
-	</section><!-- content -->
-</div><!-- container -->
+        <form action="">
+            <h1> Where are you? </h1>
+
+            <div id="location">
+                <img src="./images/google.jpg" alt="eine grafik" style="width: 360px; height: 220px">
+
+                <div id="pos" style="z-index:40000000000000;">
+                    Deine Position wird ermittelt...
+                </div>
+                <p></p>
+
+                <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">
+                    <li>
+                        <a href="#"><h3 class="name">Berlin</h3></a>
+                    </li>
+                    <li>
+                        <a href="#"><h3 class="name">Stuttgart</h3></a>
+                    </li>
+                    <li>
+                        <a href="#"><h3 class="name">Frankfurt</h3></a>
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <!-- form -->
+    </section>
+    <!-- content -->
+</div>
+<!-- container -->
 </body>
 </html>
