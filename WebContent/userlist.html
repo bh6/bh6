@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Where your are?</title>
+    <title>IBMers</title>
     <!-- Include Google API  -->
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <!-- Include jQuery Mobile stylesheets -->
@@ -32,12 +32,16 @@
             $('#users .list li').remove();
 
             $.each(updatedUser, function (index, userName) {
+                if(jQuery.isEmptyObject(userName.imgurl)){
+                    userName.imgurl = "./images/profile.jpg";
+                }
                 var htmlstr = "";
                 htmlstr += "<li id=\"userlist-";
                 htmlstr +=index;
                 htmlstr +="\" onclick=\"toggleUserDetail(this)\" class=\"search-card\" data-cards-index=\"1\"\n";
                 htmlstr += "style=\"list-style-type:none;\">\n";
                 htmlstr += "<div class=\"up-card standard card-header card-clickable ui-grid-a\">\n";
+                htmlstr += "<div class=\"ui-grid-a\">\n";
                 htmlstr += "<div class=\"ui-block-a\" style=\"width: 16.66666667%\">\n";
                 htmlstr += "<div class=\"grid-header\"\n";
                 htmlstr += "<div class=\"profile-image\" style=\"vertical-align:middle;\">\n";
@@ -62,7 +66,32 @@
                 htmlstr += "</li>\n";
                 htmlstr += "<li class=\"phone\">" + userName.contact.mobile + "</li>\n";
                 htmlstr += "</ul></div> </div> </div>";
-                htmlstr += "<div id=\"detailinfo\" class=\"facesdetaildisplaynone card-tr\"><div class=\"card-td col3\"></div><div class=\"card-td col4\"><div class=\"contact-block\"><div class=\"dept\">IBM Systems, Middleware</div><div class=\"city\">Zürich, CH</div><div class=\"phone\">+41 58 333 57 41 (Office)</div> <div class=\"phone\">+41 79 109 32 17 (Mobile)</div><div class=\"email\"><a href=\"mailto:raphael.ochsenbein@ch.ibm.com\" tabindex=\"3\">raphael.ochsenbein@ch.ibm.com</a> </div><div class=\"notes-id\">Raphael Ochsenbein/Switzerland/IBM</div></div></div></div>"
+
+                htmlstr += "<div class=\"facesdetailinfo facesdetaildisplaynone card-tr\">" +
+                        "<div class=\"card-td\"><hr></div>";
+                /*
+                htmlstr +=
+                        "<div class=\"profile-name\">"+userName.lastcheckinglocation.name+"</div>" +
+                        "<div class=\"profile-name\">"+
+                        userName.lastcheckinglocation.adress.street + " " +
+                        userName.lastcheckinglocation.adress.number +
+                        "</div>" +
+                        "<div class=\"profile-name\">"+
+                        userName.lastcheckinglocation.adress.plz + " " +
+                        userName.lastcheckinglocation.adress.stadt +
+                        "</div>" +
+                        "<div class=\"card-td\"><hr></div>";
+                        */
+
+                $.each(userName.skills, function (index, skill){
+                    htmlstr +="<div class=\"profile-name\">" +
+                            skill.name + ", Expertise " +
+                            skill.level +
+                            "</div>";
+                });
+
+                htmlstr += "</div></div></div>";
+
 
                 htmlstr += "</li>\n";
 
@@ -74,76 +103,54 @@
     <script type="text/javascript">
         function toggleUserDetail(elem){
             var toggled;
-            console.log( $(elem.id).find("detailinfo") );
-            $(elem.id).find("detailinfo").html();
-            console.log( $( '#userlist-0 #detailinfo' ).attr('class') );
-            $(elem.id).find("detailinfo").removeClass('facesdetaildisplaynone');
-            console.log( $( '#userlist-0 #detailinfo').attr('class') );
+            var detailelemfinder = $(".facesdetailinfo");
+            var detailelem = $(elem).find(detailelemfinder);
+
+            //console.log( detailelem.attr('class') );
+            if(detailelem.hasClass('facesdetaildisplaynone')){
+                detailelem.removeClass('facesdetaildisplaynone');
+                detailelem.addClass('facesdetaildisplay');
+            }else{
+                detailelem.removeClass('facesdetaildisplay');
+                detailelem.addClass('facesdetaildisplaynone');
+            }
+            //console.log( detailelem.attr('class') );
         }
     </script>
     <script type="application/javascript">
-        // Get the updated list
         function update() {
-            var updated_users = [{
-                "id": "1",
-                "name": "Arend Berg",
-                "title": "Senior IT Architect - Solution Architect",
-                "contact": {
-                    "mobile": "+49 171 3383894",
-                    "email": "Arend.Berg@de.ibm.com"
-                },
-                "imgurl": "images/arend.jpg",
-                "skills": {
-                    "id": "1",
-                    "name": "IT Architecture",
-                    "level": 2
-                },
-                "lastcheckinglocation": {
-                    "id": "1",
-                    "name": "Hotel1",
-                    "type": "HOTEL",
-                    "gps": {"x": 33.0, "y": 45.0},
-                    "adress": {"street": "Kurfurstendamm", "number": 100, "plz": 10709, "stadt": "Berlin"}
-                }
-            }, {
-                "id": "2",
-                "name": "Torsten Froemert",
-                "title": "Senior Consultant",
-                "contact": {
-                    "mobile": "+49 170 4147 387",
-                    "email": "tfroemert@de.ibm.com"
-                },
-                "imgurl": "images/torsten.jpg",
-                "skills": {
-                    "id": "1",
-                    "name": "IBM Commerce",
-                    "level": 2
-                },
-                "lastcheckinglocation": {
-                    "id": "1",
-                    "name": "Hotel1",
-                    "type": "HOTEL",
-                    "gps": {"x": 33.0, "y": 45.0},
-                    "adress": {"street": "Kurfurstendamm", "number": 100, "plz": 10709, "stadt": "Berlin"}
-                }
-            }];
             // Update it
-            update_user(updated_users);
+            var updateUsers = $.get( "http://bbhackathon6.mybluemix.net/api/user/find", function() {
+                update_user(jQuery.parseJSON(updateUsers.responseText));
+            });
+            document.querySelector('#finderinpout').addEventListener('keypress', function (e) {
+                var key = e.which || e.keyCode;
+                if (key === 13) { // 13 is enter
+                    if (event.which == 13 || event.keyCode == 13) {
+                        //code to execute here
+                        console.log("search");
+                        e.preventDefault();
+                        var updateUsers = $.get( "http://bbhackathon6.mybluemix.net/api/user/find/?text-basic="+$('#finderinpout').val(), function() {
+                            update_user(jQuery.parseJSON(updateUsers.responseText));
+                        });
+                        console.log($('#finderinpout').val());
+                        return false;
+                    }
+                    return true;
+                }
+            });
         }
         //Example by AJAX get using a made-up URL
     </script>
-
-
 </head>
 <body onload="update();">
-
 <div class="container">
     <section id="content">
 
         <form action="">
                 <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">
-                    <li id="userlist-0" class="search-card" data-cards-index="1" style="list-style-type:none;">
-                        <input type="text" name="text-basic" id="text-basic" value="" placeholder="Search for skills available from nearby IBMer's...">
+                    <li id="finderlist" class="search-card" data-cards-index="1" style="list-style-type:none;">
+                        <input id="finderinpout" type="text" name="text-basic" id="text-basic" value="" placeholder="Search for skills available from nearby IBMer's...">
                     </li>
                 </ul>
 
