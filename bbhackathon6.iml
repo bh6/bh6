@@ -28,7 +28,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="openjpa-todo" />
+        </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>
     </facet>
@@ -85,6 +87,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/dep-jar/gson-2.2.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/dep-jar/javax.servlet_3.0.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
