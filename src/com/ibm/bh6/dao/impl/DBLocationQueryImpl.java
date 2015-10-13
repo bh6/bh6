@@ -56,11 +56,12 @@ public class DBLocationQueryImpl implements DBLocationQuery {
 
         // EntityManager em = DBHandler.getEntityManager();
 
-        LOGGER.info("Get all locations");
+        LOGGER.info("Get all locations for: x:"+gpsX+", y:"+gpsY);
+        System.out.println("Get all locations for: x:"+gpsX+", y:"+gpsY);
 
-        TypedQuery<Location> typedQuery = em.createQuery("SELECT l FROM Location l ORDER BY ABS(m_GPSx - :gpsX + m_GPSy - :gpsY)", Location.class);
-        typedQuery.setParameter(":gpsX", gpsX);
-        typedQuery.setParameter(":gpsY", gpsY);
+        TypedQuery<Location> typedQuery = em.createQuery("SELECT l FROM Location l ORDER BY ABS(l.m_GPSx - :gpsX + l.m_GPSy - :gpsY)", Location.class);
+        typedQuery.setParameter("gpsX", gpsX);
+        typedQuery.setParameter("gpsY", gpsY);
         List<Location> results = typedQuery.getResultList();
 
         return results;
@@ -83,7 +84,7 @@ public class DBLocationQueryImpl implements DBLocationQuery {
     @Override
     public List<Location> getLocationsByTypeAndDistance(Float gpsX, Float gpsY, String type) {
 
-        // EntityManager em = DBHandler.getEntityManager();
+      // EntityManager em = DBHandler.getEntityManager();
 
         LOGGER.info("Get all locations");
 

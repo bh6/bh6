@@ -51,7 +51,7 @@ public class LocationResource {
 	 * Return a JSON List with locations
 	 */
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getLocationByDistance(@QueryParam("x") float x, @QueryParam("x") float y) {
+	public Response getLocationByDistance(@QueryParam("x") float x, @QueryParam("y") float y) {
 		Logger.getAnonymousLogger().info("x:" + x + ",y: "+y);
 		DBLocationQueryImpl q = new DBLocationQueryImpl();
 		List<Location> locations = q.getLocationsByDistance(x, y);
