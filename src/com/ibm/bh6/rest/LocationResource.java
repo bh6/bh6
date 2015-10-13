@@ -40,7 +40,7 @@ public class LocationResource {
 		DBLocationQuery q = new DBLocationQueryImpl();
 		Location l = q.getLocation(Integer.parseInt(id));
 
-		return Response.ok(getJSON(l).toString()).build();
+		return Response.ok(getJSON(l).toString()).header("Access-Control-Allow-Origin", "*").build();
 	}
 
 	@GET
