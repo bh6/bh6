@@ -1,10 +1,16 @@
 LOCATION_ID;BRICK;CITY;GPS_X;GPS_Y;NAME;STREET;HNR;LOC_TYPE
-1;53113;Bonn;50.710117;7.129966;Postbank;Friedrich-Ebert-Allee;114-126;CUSTOMER
+1;53113;Bonn;50.710117;7.129966;Postbank;Friedrich-Ebert-Allee;114;CUSTOMER
 2;60311;Frankfurt;50.111968;8.678750;Commerzbank;Kaiserplatz;1;CUSTOMER
 3;60485;Frankfurt;50.136074;8.569968;Deutsche Börse AG;Mergenthalerallee;61;CUSTOMER
-4;70173;Stuttgart;50.116338;8.678527;LBBW;Am Hauptbahnhof;2;CUSTOMER
+4;70173;Stuttgart;48.716177;9.180961;LBBW;Am Hauptbahnhof;2;CUSTOMER
 5;38440;Wolfsburg;52.430023;10.784048;VW AG;Berliner Ring;2;CUSTOMER
 6;80788;München;48.177007;11.561024;BMW AG;Petuelring;130;CUSTOMER
 7;71032;Böblingen;48.665961;9.037728;IBM Deutschland Research & Development;Schönaicher Str.;220;CUSTOMER
 8;71032;Böblingen;48.668219;9.036206;Restaurantbetrieb IBM-Klub;Schönaicher Str;216;HOTEL
 9;71034;Böblingen;48.685508;8.987671;Mercure Hotel Stuttgart Boeblingen;Otto-Lilienthal-Str.;18;HOTEL
+10;80807;München;48.177007;11.561102;BMW Niederlassung;Frankfurter Ring;1;CUSTOMER
+11;10785;Berlin;52.500101;13.172123;Bomardier Transportatin;Schöneberger Ufer;1;CUSTOMER
+12;71139;Ehningen;48.243112;8.944861;IBM Ehningen;IBM-Allee;1;CUSTOMER
+13;71083;Herrenberg;48.604320;8.871809;IBM Herrenberg;IBM Herrenberg;1;CUSTOMER
+14;71065;Sindelfingen;48.708001;9.041724;Mercure Hotel Stuttgart Sindelfingen;Schwertstraße;65;HOTEL
+15;71065;Sindelfingen;48.706483;9.031239;Stuttgart Marriott hotel;Mahdental Str;68;HOTEL

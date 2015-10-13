@@ -61,9 +61,8 @@ public class SessionResource {
 	}
 
 	private boolean checkLogin(HttpServletRequest request, String user, String password) {
-
 		DBUserQuery db = new DBUserQueryImpl();
-		User u = db.getUser(user); // TODO Noch eine Passwort prüfung
+		User u = db.getUsersByName(user).get(0); // TODO Noch eine Passwort prüfung
 		System.out.println("User: "+u);
 		if (u != null && u instanceof User) {
 			request.getSession().setAttribute("currentUser", u);

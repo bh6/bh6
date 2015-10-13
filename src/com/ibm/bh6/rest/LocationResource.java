@@ -52,7 +52,16 @@ public class LocationResource {
 	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getLocationByDistance(@QueryParam("x") float x, @QueryParam("y") float y) {
-		Logger.getAnonymousLogger().info("x:" + x + ",y: "+y);
+		Logger.getAnonymousLogger().info("x:" + x + ",y: " + y);
+
+		if (x < 47 || x > 52) {
+			x = 48.6f;
+		}
+
+		if (y < 8 || y > 10) {
+			y = 9.03f;
+		}
+
 		DBLocationQueryImpl q = new DBLocationQueryImpl();
 		List<Location> locations = q.getLocationsByDistance(x, y);
 		return CORSResponse.ok(getJSON(locations).toString()).build();
@@ -75,9 +84,9 @@ public class LocationResource {
 		 * Integer (10709) , new Float( 43.00), new Float (34.00));
 		 */
 
-		//return CORSResponse.ok(getJSON(locations).toString()).build();
+		// return CORSResponse.ok(getJSON(locations).toString()).build();
 	}
-
+/*
 	@GET
 	@Path("/createFake")
 	public Response createFake() {
@@ -100,7 +109,7 @@ public class LocationResource {
 
 		return CORSResponse.ok("Result: " + result).build();
 	}
-
+*/
 	public JsonElement getJSON(Collection<Location> locations) {
 		JsonArray resultArray = new JsonArray();
 

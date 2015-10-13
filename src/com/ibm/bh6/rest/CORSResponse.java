@@ -11,4 +11,6 @@ public abstract class CORSResponse extends Response {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
 				.header("Access-Control-Max-Age", "1209600");
 	}
+	
+
 }

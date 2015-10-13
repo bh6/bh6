@@ -59,7 +59,7 @@ public class DBLocationQueryImpl implements DBLocationQuery {
         LOGGER.info("Get all locations for: x:"+gpsX+", y:"+gpsY);
         System.out.println("Get all locations for: x:"+gpsX+", y:"+gpsY);
 
-        TypedQuery<Location> typedQuery = em.createQuery("SELECT l FROM Location l ORDER BY ABS(l.m_GPSx - :gpsX + l.m_GPSy - :gpsY)", Location.class);
+        TypedQuery<Location> typedQuery = em.createQuery("SELECT l FROM Location l ORDER BY ABS(SQRT((l.m_GPSx - :gpsX)*(l.m_GPSx - :gpsX) + (l.m_GPSy - :gpsY)*(l.m_GPSy - :gpsY)))", Location.class);
         typedQuery.setParameter("gpsX", gpsX);
         typedQuery.setParameter("gpsY", gpsY);
         List<Location> results = typedQuery.getResultList();
