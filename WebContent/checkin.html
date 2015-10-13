@@ -4,6 +4,8 @@
 <meta charset="ISO-8859-1">
 <title>Where are you?</title>
 <link rel="stylesheet" type="text/css" href="./css/checkin.css" />
+<!-- Include Google API  -->
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <!-- Include jQuery Mobile stylesheets -->
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <!-- Include the jQuery library -->
@@ -57,14 +59,11 @@ function update_list(updatedLocation) {
 function update(){ 
 	navigator.geolocation.getCurrentPosition(function(position){ 
         document.getElementById('pos').innerHTML = 'Latitude: '+position.coords.latitude+' / Longitude: '+position.coords.longitude;
-        document.getElementById("img").src="./images/google.jpg"; //Lade Fake Bild
         var updateLocation = $.get( "http://bbhackathon6.mybluemix.net/api/location/byDistance?x="+position.coords.latitude+"&y="+position.coords.longitude, function() {
         		update_list(jQuery.parseJSON(updateLocation.responseText));
         	});   	
 	}, function(){
-    	//var updated_location = [{"id":"1","name":"IBM Deutschland Research & Development","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Resraurantbetrieb IBM-Klub","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"Hotel Restaurant Pfefferburg","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}];
-    	var updated_location = [{"id":"1","name":"IBM Deutschland Research & Development","type":"CUSTOMER","gps":{"x":48.665962,"y":9.037728},"adress":{"street":"SchÃ¶naicher Str.","number":220,"plz":71032,"stadt":"BÃ¶blingen"}},{"id":"1","name":"Restaurantbetrieb IBM-Klub","type":"HOTEL","gps":{"x":48.66822,"y":9.036206},"adress":{"street":"SchÃ¶naicher Str","number":216,"plz":71032,"stadt":"BÃ¶blingen"}},{"id":"1","name":"Mercure Hotel Stuttgart Boeblingen","type":"HOTEL","gps":{"x":48.68551,"y":8.987671},"adress":{"street":"Otto-Lilienthal-Str.","number":18,"plz":71034,"stadt":"BÃ¶blingen"}},{"id":"1","name":"Stuttgart Marriott hotel","type":"HOTEL","gps":{"x":48.706482,"y":9.031239},"adress":{"street":"Mahdental Str","number":68,"plz":71065,"stadt":"Sindelfingen"}},{"id":"1","name":"Mercure Hotel Stuttgart Sindelfingen","type":"HOTEL","gps":{"x":48.708,"y":9.041724},"adress":{"street":"SchwertstraÃŸe","number":65,"plz":71065,"stadt":"Sindelfingen"}},{"id":"1","name":"IBM Herrenberg","type":"CUSTOMER","gps":{"x":48.60432,"y":8.871809},"adress":{"street":"IBM Herrenberg","number":1,"plz":71083,"stadt":"Herrenberg"}},{"id":"1","name":"LBBW","type":"CUSTOMER","gps":{"x":48.71618,"y":9.180961},"adress":{"street":"Am Hauptbahnhof","number":2,"plz":70173,"stadt":"Stuttgart"}},{"id":"1","name":"IBM Ehningen","type":"CUSTOMER","gps":{"x":48.24311,"y":8.944861},"adress":{"street":"IBM-Allee","number":1,"plz":71139,"stadt":"Ehningen"}},{"id":"1","name":"Commerzbank","type":"CUSTOMER","gps":{"x":50.11197,"y":8.67875},"adress":{"street":"Kaiserplatz","number":1,"plz":60311,"stadt":"Frankfurt"}},{"id":"1","name":"Deutsche BÃ¶rse AG","type":"CUSTOMER","gps":{"x":50.136074,"y":8.569968},"adress":{"street":"Mergenthalerallee","number":61,"plz":60485,"stadt":"Frankfurt"}},{"id":"1","name":"BMW AG","type":"CUSTOMER","gps":{"x":48.177006,"y":11.561024},"adress":{"street":"Petuelring","number":130,"plz":80788,"stadt":"MÃ¼nchen"}},{"id":"1","name":"BMW Niederlassung","type":"CUSTOMER","gps":{"x":48.177006,"y":11.561102},"adress":{"street":"Frankfurter Ring","number":1,"plz":80807,"stadt":"MÃ¼nchen"}},{"id":"1","name":"Postbank","type":"CUSTOMER","gps":{"x":50.710117,"y":7.129966},"adress":{"street":"Friedrich-Ebert-Allee","number":-12,"plz":53113,"stadt":"Bonn"}},{"id":"1","name":"VW AG","type":"CUSTOMER","gps":{"x":52.430023,"y":10.784048},"adress":{"street":"Berliner Ring","number":2,"plz":38440,"stadt":"Wolfsburg"}},{"id":"1","name":"Bomardier Transportatin","type":"CUSTOMER","gps":{"x":52.5001,"y":13.172123},"adress":{"street":"SchÃ¶neberger Ufer","number":1,"plz":10785,"stadt":"Berlin"}},{"id":"1","name":"DKB","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Hotel1","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Berlin","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}}]
-    	document.getElementById("img").src="./images/google.jpg"; //Lade Fake Bild
+    	var updated_location = [{"id":"1","name":"IBM Deutschland Research & Development","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Resraurantbetrieb IBM-Klub","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"Hotel Restaurant Pfefferburg","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}];
     	// Update it
     	update_list(updated_location);
     }, (function() {
@@ -100,14 +99,24 @@ function update(){
 			
 		<form action="">
 			<h1> Where are you? </h1>
+
 			<div id="location">		
-				<img id="img" src="./images/google_big.jpg" alt="eine grafik" style="width: 360px; height: 220px">
+				<img src="./images/google.jpg" alt="eine grafik" style="width: 360px; height: 220px">
 				<div id="pos" style="z-index:40000000000000;">			
         			Deine Position wird ermittelt...
             	</div>	
             	<p></p>
             
 			  <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">			  
+				   <li>
+				      <a href="#"><h3 class="name">Berlin</h3></a>
+				    </li>
+				    <li>
+				      <a href="#"><h3 class="name">Stuttgart</h3></a>
+				    </li>
+				    <li>
+				      <a href="#"><h3 class="name">Frankfurt</h3></a>
+				    </li>
 			  </ul> 
 			</div>
 		</form><!-- form -->

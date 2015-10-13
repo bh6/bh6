@@ -124,6 +124,8 @@
         }
     </script>
     <script type="application/javascript">
+        // Prevent submitting the page on enter.
+
         function update() {
             // Update it
             var updateUsers = $.get( "http://bbhackathon6.mybluemix.net/api/user/find", function() {
@@ -149,18 +151,19 @@
                 }
             });
         }
+        //Example by AJAX get using a made-up URL
     </script>
 </head>
-<body>
+<body onload="update();">
 <div class="container">
     <section id="content">
 
         <form action="">
-            <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">
-                <li id="finderlist" style="list-style-type:none;">
-                    <input id="finderinpout" type="text" name="text-basic" id="text-basic" value="" placeholder="Search for skills available from nearby IBMer's...">
-                </li>
-            </ul>
+                <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">
+                    <li id="finderlist" style="list-style-type:none;">
+                        <input id="finderinpout" type="text" name="text-basic" id="text-basic" value="" placeholder="Search for skills available from nearby IBMer's...">
+                    </li>
+                </ul>
 
             <div id="users">
                 <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">
@@ -178,10 +181,4 @@
 <!-- container -->
 
 </body>
-<script type="application/javascript">
-    $(window).load(function(){
-        update();
-    });
-</script>
-
 </html>
