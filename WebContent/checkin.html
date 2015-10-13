@@ -62,7 +62,7 @@ function update(){
 	navigator.geolocation.getCurrentPosition(function(position){ 
         document.getElementById('pos').innerHTML = 'Latitude: '+position.coords.latitude+' / Longitude: '+position.coords.longitude;
         var updateLocation = $.get( "http://bbhackathon6.mybluemix.net/api/location/byDistance?x="+position.coords.latitude+"&y="+position.coords.longitude, function() {
-        		update_list(updateLocation);
+        		update_list(jQuery.parseJSON(updateLocation.responseText));
         	});   	
 	}, function(){
     	var updated_location = [{"id":"1","name":"IBM Deutschland Research & Development","type":"HOTEL","gps":{"x":33.0,"y":45.0},"adress":{"street":"KurfÃ¼rstendamm","number":100,"plz":10709,"stadt":"Berlin"}},{"id":"1","name":"Resraurantbetrieb IBM-Klub","type":"CITY","gps":{"x":33.0,"y":45.0},"adress":{"street":"n/a","number":-100,"plz":10000,"stadt":"Berlin"}},{"id":"1","name":"Hotel Restaurant Pfefferburg","type":"CUSTOMER","gps":{"x":43.0,"y":34.0},"adress":{"street":"SchÃƒÂ¶nhauserstr.","number":765,"plz":10709,"stadt":"Berlin"}}];
