@@ -62,6 +62,7 @@ public class UserResource {
 		DBUserQuery db = new DBUserQueryImpl();
 		DBCheckinQuery dbCheckin = new DBCheckinQueryImpl();
 
+		
 		// Get Checkins by current location
 		List<CheckIn> checkins = dbCheckin.getClosestCheckIns(x, y);
 		List<CheckIn> checkinsFinal = new ArrayList<CheckIn>();
