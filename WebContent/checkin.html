@@ -12,12 +12,39 @@
 <!-- Include the jQuery Mobile library -->
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-
+ 
 <link rel="stylesheet" type="text/css" href="../WebContent/css/checkin.css" />
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+
+
+<!-- include Google API -->
+<script>
+	function initialize(coords) {
+	    var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
+	    var myOptions = {
+	        zoom: 2,
+	        center: latlng,
+	        mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+	    var map = new google.maps.Map(document.getElementById("pos"), myOptions);
+	    
+	    var marker = new google.maps.Marker({
+	        position: latlng, 
+	        map: map, 
+	        title: "Hier bist du :)"
+	    }); 
+	}
+
+	 navigator.geolocation.getCurrentPosition(function(position){ 
+         initialize(position.coords);
+     }, function(){
+         document.getElementById('pos').innerHTML = 'Deine Position konnte leider nicht ermittelt werden';
+     });
+</script>
+
 <script type="text/javascript"> 
 function update_list(updatedLocation) {
-
 		console.log(updatedLocation)
 	  // clear the existing list
 	  $('#location .list li').remove();
@@ -76,33 +103,12 @@ function update(){
 			<h1> Where are you? </h1>
 
 			<div id="location">		
-				<div id="pos"">
+				<img src="../WebContent/images/google.jpg" alt="eine grafik" style="width: 360px; height: 220px">
+				<div id="pos" style="z-index:40000000000000;">			
         			Deine Position wird ermittelt...
             	</div>	
-            <script>
-		        function initialize(coords) {
-		            var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
-		            var myOptions = {
-		                zoom: 8,
-		                center: latlng,
-		                mapTypeId: google.maps.MapTypeId.ROADMAP
-		            };
-		            var map = new google.maps.Map(document.getElementById("pos"), myOptions);
-		            
-		            var marker = new google.maps.Marker({
-		                position: latlng, 
-		                map: map, 
-		                title: "Hier bist du :)"
-		            }); 
-		        }
-		  
-		        navigator.geolocation.getCurrentPosition(function(position){ 
-		            initialize(position.coords);
-		        }, function(){
-		            document.getElementById('pos').innerHTML = 'Deine Position konnte leider nicht ermittelt werden';
-		        });
-			</script>	
-            	
+            	<p></p>
+            
 			  <ul class="list" data-role="listview" data-inset="true" data-split-icon="star">			  
 				   <li>
 				      <a href="#"><h3 class="name">Berlin</h3></a>

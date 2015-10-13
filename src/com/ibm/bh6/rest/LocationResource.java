@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -39,7 +40,7 @@ public class LocationResource {
 		DBLocationQuery q = new DBLocationQueryImpl();
 		Location l = q.getLocation(Integer.parseInt(id));
 
-		return Response.ok(getJSON(l).toString()).build();
+		return Response.ok(getJSON(l).toString()).header("Access-Control-Allow-Origin", "*").build();
 	}
 
 	@GET
@@ -51,66 +52,56 @@ public class LocationResource {
 	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getLocationByDistance(@QueryParam("x") float x, @QueryParam("x") float y) {
-		/*
-		 * TODO: Use this code, after persistence is implemented and we have some example data
-		 * 
-		 * DBLocationQueryImpl q = new DBLocationQueryImpl();
-		 *List<Location> locations = q.getLocationsByDistance(x, y);
-		 * return Response.ok(getJSON(locations).toString()).build();
-		*/
-		
-		
-		Location l1  = new Location ("Hotel1","HOTEL");
-		l1.setAddress("Berlin", "Kurfürstendamm", new Integer(100), new Integer (10709), new Float(33.00), new Float(45.00));		
-
-		Location l2 = new Location ("Berlin","CITY");
-		l2.setAddress("Berlin", "n/a", -100, 10000,  new Float(33.00), new Float(45.00));
-		
-		Location l3 = new Location ("DKB","CUSTOMER");
-		l3.setAddress("Berlin", "SchÃ¶nhauserstr." , new Integer (765) , new Integer (10709) , new Float( 43.00), new Float (34.00));
-	
-		
-		Location l4 = new Location ("DKB","CUSTOMER");
-		l4.setAddress("Berlin", "SchÃ¶nhauserstr." , new Integer (765) , new Integer (10709) , new Float( 43.00), new Float (34.00));
-	
-		
-		ArrayList<Location> locations = new ArrayList<Location>();
-		locations.add(l1);
-		locations.add(l2);
-		locations.add(l3);
-		locations.add(l4);
-		
-		
+		Logger.getAnonymousLogger().info("x:" + x + ",y: "+y);
+		DBLocationQueryImpl q = new DBLocationQueryImpl();
+		List<Location> locations = q.getLocationsByDistance(x, y);
 		return Response.ok(getJSON(locations).toString()).build();
+
+		/*
+		 * Location l1 = new Location ("Hotel1","HOTEL");
+		 * l1.setAddress("Berlin", "Kurfürstendamm", new Integer(100), new
+		 * Integer (10709), new Float(33.00), new Float(45.00));
+		 * 
+		 * Location l2 = new Location ("Berlin","CITY"); l2.setAddress("Berlin",
+		 * "n/a", -100, 10000, new Float(33.00), new Float(45.00));
+		 * 
+		 * Location l3 = new Location ("DKB","CUSTOMER");
+		 * l3.setAddress("Berlin", "SchÃ¶nhauserstr." , new Integer (765) , new
+		 * Integer (10709) , new Float( 43.00), new Float (34.00));
+		 * 
+		 * 
+		 * Location l4 = new Location ("DKB","CUSTOMER");
+		 * l4.setAddress("Berlin", "SchÃ¶nhauserstr." , new Integer (765) , new
+		 * Integer (10709) , new Float( 43.00), new Float (34.00));
+		 */
+
+		//return Response.ok(getJSON(locations).toString()).build();
 	}
-	
-	
+
 	@GET
 	@Path("/createFake")
 	public Response createFake() {
-		
-		Location l1  = new Location ("Hotel1","HOTEL");
-		l1.setAddress("Berlin", "Kurfürstendamm", new Integer(100), new Integer (10709), new Float(33.00), new Float(45.00));		
 
-		Location l2 = new Location ("Berlin","CITY");
-		l2.setAddress("Berlin", "n/a", -100, 10000,  new Float(33.00), new Float(45.00));
-		
-		Location l3 = new Location ("DKB","CUSTOMER");
-		l3.setAddress("Berlin", "SchÃ¶nhauserstr." , new Integer (765) , new Integer (10709) , new Float( 43.00), new Float (34.00));
-	
-		
+		Location l1 = new Location("Hotel1", "HOTEL");
+		l1.setAddress("Berlin", "Kurfürstendamm", new Integer(100), new Integer(10709), new Float(33.00),
+				new Float(45.00));
+
+		Location l2 = new Location("Berlin", "CITY");
+		l2.setAddress("Berlin", "n/a", -100, 10000, new Float(33.00), new Float(45.00));
+
+		Location l3 = new Location("DKB", "CUSTOMER");
+		l3.setAddress("Berlin", "SchÃ¶nhauserstr.", new Integer(765), new Integer(10709), new Float(43.00),
+				new Float(34.00));
+
 		DBLocationQuery q = new DBLocationQueryImpl();
-		q.postLocation(l1);
-		q.postLocation(l2);
-		q.postLocation(l3);
-		
-		return Response.ok().build();
-	}
-	
-	
-	
+		boolean result = q.postLocation(l3);
+		// q.postLocation(l2);
+		// q.postLocation(l3);
 
-	private JsonElement getJSON(Collection<Location> locations) {
+		return Response.ok("Result: " + result).build();
+	}
+
+	public JsonElement getJSON(Collection<Location> locations) {
 		JsonArray resultArray = new JsonArray();
 
 		for (Iterator<Location> it = locations.iterator(); it.hasNext();) {
@@ -121,12 +112,12 @@ public class LocationResource {
 		return resultArray;
 	}
 
-	private JsonElement getJSON(Location l) {
-		
-		if (l==null) {
+	public JsonElement getJSON(Location l) {
+
+		if (l == null) {
 			return new JsonObject();
 		}
-		
+
 		JsonObject jsonObject = new JsonObject();
 
 		jsonObject.addProperty("id", "1"); // TODO: Location hat keine ID
